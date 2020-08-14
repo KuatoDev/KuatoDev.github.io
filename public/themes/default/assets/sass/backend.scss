@@ -1,0 +1,19 @@
+@import "bootstrap";
+@import "font-awesome";
+@import "simplemde.css";
+
+.vertical-center {
+	display: flex;
+	min-height: 100vh;
+	align-items: center;
+	justify-content: center;
+}
+
+body {
+	padding-buttom: 2rem;
+}
+
+.excerpt .CodeMirror {
+	height: 150px;
+	min-height: 150px;
+}
