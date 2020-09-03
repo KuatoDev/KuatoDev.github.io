@@ -1,0 +1,100 @@
+#style-switcher {
+    left: -220px;
+    position: fixed;
+    top: 200px;
+    width: 220px;
+    z-index: 9999;    
+    background: #fff;
+    border-radius: 0 0 3px;
+    box-shadow: 0px 5px 30px 0 rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: .7s;
+    transition-duration: .7s;      
+}
+
+#style-switcher div {
+    padding: 5px 10px;
+}
+
+#style-switcher h2 {
+    color: #222;
+    font-size: 16px;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding: 15px 0px 7px 0px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#style-switcher:hover{
+    left: 0px;
+}
+
+#style-switcher h2 a {
+    background: #222;
+    border-radius: 0px 3px 3px 0px;
+    display: block;
+    height: 40px;
+    position: absolute;
+    right: -40px;
+    top: 0;
+    width: 40px;
+}
+
+#style-switcher h2 a i {
+    color: #fff;
+    font-size: 19px;
+    left: 12px;
+    position: absolute;
+    top: 10px;
+}
+
+.colors {
+    padding-left: 7px;
+}
+
+.colors {
+    list-style: none;
+    margin: 0px 0px 10px 0px;
+    overflow: hidden;
+}
+
+.colors li {
+    float: left;
+}
+
+.colors li a {
+	cursor: pointer;
+	display: block;
+	height: 30px;
+	margin: 7px 9px;
+	width: 30px;
+    border-radius: 30px;
+}
+
+.style1 {
+    background: -webkit-linear-gradient(315deg,#6271f6 5%,#f9417a 90%);
+    background: -moz-linear-gradient(315deg,#6271f6 5%,#f9417a 90%);
+    background: linear-gradient(135deg,#6271f6 5%,#f9417a 90%); 
+}
+
+.style2 {
+    background: -webkit-linear-gradient(315deg,#5d87de 5%,#68cdfd 90%);
+    background: -moz-linear-gradient(315deg,#5d87de 5%,#68cdfd 90%);
+    background: linear-gradient(135deg,#5d87de 5%,#68cdfd 90%); 
+}
+
+.style3 {
+    background: -webkit-linear-gradient(315deg,#2c90e4 5%,#a754e2 90%);
+    background: -moz-linear-gradient(315deg,#2c90e4 5%,#a754e2 90%);
+    background: linear-gradient(135deg,#2c90e4 5%,#a754e2 90%); 
+}
+
+.style4 {
+    background: -webkit-linear-gradient(315deg,#33d7d1 5%,#7ced92 90%);
+    background: -moz-linear-gradient(315deg,#33d7d1 5%,#7ced92 90%);
+    background: linear-gradient(135deg,#33d7d1 5%,#7ced92 90%); 
+}
+
+
+
