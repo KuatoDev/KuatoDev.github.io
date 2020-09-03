@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
-    <title>Sahabat Demokrat - Pendaftaran Kader</title>
+    <title>Sahabat Bulan Bintang - Pendaftaran Kader</title>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="template/img/logos/logo-shortcut.png" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -65,16 +65,16 @@
     <!-- Navbar START -->
     <header>
       <nav class="navbar navbar-default navbar-custom navbar-fixed-top" data-offset-top="200" style="border-bottom: 1px solid transparent">
-	<div class="container">
-	  <div class="row">
+		<div class="container">
+		  <div class="row">
             <div class="navbar-header navbar-header-custom">
               <button type="button" class="navbar-toggle collapsed menu-icon" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-logo" href="index_html.html"><img src="template/img/logos/logo_light.png" class="logo_light" alt="logo"></a>
-              <a class="navbar-logo" href="index_html.html"><img src="template/img/logos/logo_main.png" class="logo_main" alt="logo"></a>
+              <a class="navbar-logo" href="index.html"><img src="template/img/logos/logo_light.png" class="logo_light" alt="logo"></a>
+              <a class="navbar-logo" href="index.html"><img src="template/img/logos/logo_main.png" class="logo_main" alt="logo"></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -82,176 +82,146 @@
                 <li><a href="index.html" class="js-scroll-trigger">Beranda</a></li>
               </ul>
             </div>  
-	  </div>
-	</div>
+		  </div>
+		</div>
       </nav>  
     </header>
-    <!-- Navbar END -->
-    <!-- Page Title START -->
     <div class="page-title">
-      <!-- Gradient Overlay START -->
       <div class="gradient-overlay"></div>
-      <!-- Gradient Overlay END -->
-      <!-- Shapes START -->
       <div class="bg-shapes wow fadeIn animated" data-wow-delay=".3s" style="background-image: url(template/img/layers/shapes.png); background-position: center;"></div>   
     </div>
-    <!-- Page Title END -->
-    <!-- Blog post START -->
     <div class="section-block" style="padding-bottom: 20px;background-color: #f4f4f4">
       <div class="container">
         <div class="row">
-	  <!-- Left -->
-	  <div class="col-md-12">
-	    <div class="center-block">
-	      <div class="panel panel-default" style="border-radius: 0">
-		<form id="registerPost">
-		  <div class="panel-heading" style="background-color: #eee"><h5>Pendaftaran Kader Online</h5></div>
-		  <div class="panel-body" style="padding:25px !important">
-		    <div class="row">
-		      <div class="col-md-12">
-			<div class="form-group">
-			  <input type="text" class="form-control" name="referensi" placeholder="Nomor KTA Referensi">
-			  <div class="warning_referensi"></div>
+		  <!-- Left -->
+		  <div class="col-md-12">
+			<div class="center-block">
+			  <div class="panel panel-default" style="border-radius: 0">
+				<form id="registerPost">
+				  <div class="panel-heading" style="background-color: #eee"><h5>Pendaftaran Kader Online</h5></div>
+				  <div class="panel-body" style="padding:25px !important">
+					<div class="row">
+					  <div class="col-md-12">
+						<div class="form-group">
+						  <input type="number" class="form-control" name="referensi" placeholder="Nomor KTA Referensi">
+						  <div class="warning_referensi"></div>
+						</div>
+					  </div>
+					 
+					  <div class="col-md-12">
+						<div class="form-group">
+						  <input type="text" class="form-control" name="nik" placeholder="Nomor NIK/KTP (*)" required>
+						  <div class="warning_nik"></div>
+						</div>
+					  </div>
+					  
+					  <div class="col-md-12">
+						<div class="form-group">
+						  <input type="text" class="form-control" name="fullname" placeholder="Nama Lengkap (*)" required>
+						  <div class="warning_fullname"></div>
+						</div>
+					  </div>
+					  
+					  <div class="col-md-6">
+						<div class="form-group">
+						  <input type="text" class="form-control" name="birth_place" placeholder="Tempat Lahir (*)" required>
+						  <div class="warning_birth_place"></div>
+						</div>
+					  </div>
+					  
+					  <div class="col-md-6">
+						<div class="form-group">
+						  <input type="date" class="form-control" name="birth_date" placeholder="Tanggal Lahir (*)" required>
+						  <div class="warning_birth_date"></div>
+						</div>
+					  </div>
+					  
+					  <div class="col-md-6">
+						<div class="form-group">
+						  <select class="form-control" name="gender">
+							<option>Pilih Jenis Kelamin (*)</option>
+							<option value="laki_laki">Laki - Laki</option>
+							<option value="perempuan">Perempuan</option>
+						  </select>
+						  <div class="warning_gender"></div>
+						</div>
+					  </div>
+					  
+					  <div class="col-md-6">
+						<div class="form-group">
+						  <select class="form-control" name="education">
+							<option value="">Pendidikan Terakhir (*)</option>
+							<option value="sd">SD</option>
+							<option value="smp">SMP</option>
+							<option value="sma">SMA/SMK</option>
+							<option value="s1">S1</option>
+							<option value="s2">S2</option>
+							<option value="s3">S3</option>
+						  </select>
+						  <div class="warning_education"></div>
+						</div>
+					  </div>
+
+					  <div class="col-md-12">
+						<div class="form-group">
+						  <input type="text" class="form-control" name="provinsi" placeholder="Provinsi (*)" required>
+						  <div class="warning_provinsi"></div>
+						</div>
+					  </div>
+					  <div class="col-md-12">
+						<div class="form-group">
+						  <input type="text" class="form-control" name="kota" placeholder="Kabupaten / Kota (*)" required>
+						  <div class="warning_kota"></div>
+						</div>
+					  </div>
+
+
+					  <div class="col-md-6">
+						<div class="form-group">
+						  <input type="text" class="form-control" name="kecamatan" placeholder="Kecamatan (*)" required>
+						  <div class="warning_kecamatan"></div>
+						</div>
+					  </div>
+
+					  <div class="col-md-6">
+						<div class="form-group">
+						  <input type="text" class="form-control" name="kelurahan" placeholder="Kelurahan / Desa (*)" required>
+						  <div class="warning_kelurahan"></div>
+						</div>
+					  </div>
+
+					  <div class="col-md-6">
+						<div class="form-group">
+						  <input type="number" class="form-control" name="celular" placeholder="Nomor Ponsel (*)" required>
+						  <div class="warning_celular"></div>
+						</div>
+					  </div>
+
+					  <div class="col-md-6">
+						<div class="form-group">
+						  <input type="email" class="form-control" name="email" placeholder="Alamat email(*)" required>
+						  <div class="warning_email"></div>
+						</div>
+
+					  </div>
+						<small>Anda Wajib Mengisi Form Yang Bertanda (*).</small>
+					  </div>
+					
+				  </div>
+				  <div class="panel-footer" style="background-color: #eee">
+					<button class="btn btn-primary btn-block btn-md" type="submit">Mendaftar</button>
+				  </div>
+				</form>
+			  </div>
 			</div>
-		      </div>
-		      <div class="col-md-12">
-			<div class="form-group">
-			  <input type="text" class="form-control" name="nik" placeholder="Nomor NIK/KTP (*)" required>
-			  <div class="warning_nik"></div>
-			</div>
-		      </div>
-		      <div class="col-md-12">
-			<div class="form-group">
-			  <input type="text" class="form-control" name="fullname" placeholder="Nama Lengkap (*)" required>
-			  <div class="warning_fullname"></div>
-			</div>
-		      </div>
-		      <div class="col-md-6">
-			<div class="form-group">
-			  <input type="text" class="form-control" name="birth_place" placeholder="Tempat Lahir (*)" required>
-			  <div class="warning_birth_place"></div>
-			</div>
-		      </div>
-		      <div class="col-md-6">
-			<div class="form-group">
-			  <input type="date" class="form-control" name="birth_date" placeholder="Tanggal Lahir (*)" required>
-			  <div class="warning_birth_date"></div>
-			</div>
-		      </div>
-		      <div class="col-md-6">
-			<div class="form-group">
-			  <select class="form-control" name="gender">
-			    <option>Pilih Jenis Kelamin (*)</option>
-				<option value="laki_laki">Laki - Laki</option>
-				<option value="perempuan">Perempuan</option>
-			  </select>
-			  <div class="warning_gender"></div>
-			</div>
-		      </div>
-		      <div class="col-md-6">
-			<div class="form-group">
-			  <select class="form-control" name="education">
-			    <option value="">Pendidikan Terakhir (*)</option>
-				<option value="sd">SD</option>
-				<option value="smp">SMP</option>
-				<option value="sma">SMA/SMK</option>
-				<option value="s1">S1</option>
-				<option value="s2">S2</option>
-				<option value="s3">S3</option>
-			  </select>
-			  <div class="warning_education"></div>
-			</div>
-		      </div>
-		      <div class="col-md-12">
-			<div class="form-group">
-			  <select class="form-control" name="provinsi" required>
-			    <option>Pilih Provinsi (*)</option>
-				<option value="aceh">Nanggroe Aceh Darussalam</option>
-				<option value="sumatera_utara">Sumatera Utara</option>
-				<option value="sumatera_barat">Sumatera Barat</option>
-				<option value="riau">Riau</option>
-				<option value="Jambi">Jambi</option>
-				<option value="bengkulu">Bengkulu</option>
-				<option value="sumsel">Sumatera Selatan</option>
-				<option value="babel">Kepulauan Bangka Belitung</option>
-				<option value="lampung">Lampung</option>
-				<option value="banten">Banten</option>
-				<option value="jakarta">DKI Jakarta</option>
-				<option value="jabar">Jawa Barat</option>
-				<option value="jateng">Jawa Tengah</option>
-				<option value="jatim">Jawa Timur</option>
-				<option value="diy">Daerah Istimewa Yogyakarta</option>
-				<option value="bali">Bali</option>
-				<option value="ntb">Nusa Tenggara Barat</option>
-				<option value="ntt">Nusa Tenggara Timur</option>
-				<option value="kalbar">Kalimantan Barat</option>
-				<option value="kalteng">Kalimantan Tengah</option>
-				<option value="kaltim">Kalimantan Timur</option>
-				<option value="kaltara">Kalimantan Utara</option>
-				<option value="kalsel">Kalimantan Selatan</option>
-				<option value="gorontalo">Gorontalo</option>
-				<option value="sulbar">Sulawesi Barat</option>
-				<option value="sulsel">Sulawesi Selatan</option>
-				<option value="sultara">Sulawesi Utara</option>
-				<option value="sulteng">Sulawesi Tengah</option>
-				<option value="sultra">Sulawesi Tenggara</option>
-				<option value="maluku">Maluku</option>
-				<option value="maltara">Maluku Utara</option>
-				<option value="papua">Papua</option>
-				<option value="papuabarat">Papua Barat</option>
-			  </select>
-			</div>
-		      </div>
-		      <div class="col-md-12">
-			<div class="form-group">
-			  <select class="form-control" name="kabupaten" required>
-			    <option>Pilih Kabupaten/Kota (*)</option>
-			  </select>
-			</div>
-		      </div>
-		      <div class="col-md-6">
-			<div class="form-group">
-			  <select class="form-control" name="kecamatan" required>
-			    <option>Pilih Kecamatan (*)</option>
-			  </select>
-			</div>
-		      </div>
-		      <div class="col-md-6">
-			<div class="form-group">
-			  <select class="form-control" name="kelurahan" required>
-			    <option value="">Pilih Kelurahan/Desa (*)</option>
-			  </select>
-			  <div class="warning_kelurahan"></div>
-			</div>
-		      </div>
-		      <div class="col-md-12">
-			<div class="form-group">
-			  <input type="text" name="cellular" class="form-control" placeholder="Nomor Handphone (*)" required  />
-			  <div class="warning_cellular"></div>
-			</div>
-			<small>Anda Wajib Mengisi Form Yang Bertanda (*).</small>
-		      </div>
-		    </div>
 		  </div>
-		  <div class="panel-footer" style="background-color: #eee">
-		    <button class="btn btn-primary btn-block btn-md" type="submit">Mendaftar</button>
-		  </div>
-		</form>
-	      </div>
-	    </div>
-	  </div>
         </div>
       </div>  
     </div>
     <!-- Blog post END -->
     <footer>
-      <h3>Copyright © 2020, Vern Kuato</h3>
+      <h3>Copyright © 2020, </h3>
     </footer>
-    <!-- Scroll to top button Start -->
-    <a href="#" class="scroll-to-top"><i class="fa fa-angle-up" aria-hidden="true"></i></a><!-- Scroll to top button End -->
-<script type="text/javascript">
-var baseUrl = 'https://sahabatdemokrat.id/bpokk';
-</script>
     <script src="template/js/jquery.min.js"></script>
     <script src="npm/select2_4-0-13/dist/js/select2.min.js"></script>
     <!-- Bootstrap JS-->
@@ -267,5 +237,5 @@ var baseUrl = 'https://sahabatdemokrat.id/bpokk';
     <script src="template/js/jquery.easing.min.js"></script>
     <!-- Main JS -->
     <script src="template/js/main.js"></script>
-    </body>
+  </body>
 </html>
