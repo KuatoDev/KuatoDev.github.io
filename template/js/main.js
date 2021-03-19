@@ -205,6 +205,14 @@ Project Single carousel
 --------------------------------------*/ 
 
     new WOW().init();
+    
+    $('.sliderimg').slick({
+     autoplay: true,
+     autoplaySpeed: 1000,
+     slidesToShow: 4,
+   slidesToScroll: 1,
+   arrows: false
+ });
 
 /*------------------------------------
     4. Navbar

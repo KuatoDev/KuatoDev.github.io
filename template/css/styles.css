@@ -43,8 +43,73 @@ TABLE OF CONTENT
 ==============================================
 */
 
+.left-right {
+    overflow:hidden;
+    height:200px;
+    width:200px;
+    position:relative;
+    background-color:#333;
+}
+.slider {
+    width:200px;
+    height:200px;
+    position:absolute;
+    top:0;
+    right:-200px;
+    background-color:#000;
+    color:#fff;
+    transition:0.4s ease;
+}
 
 
+* {box-sizing: border-box;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  
+  position: center;
+
+ 
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: Blue;
+  color: white;
+  border: White;
+ 
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+     
+     
 /*-----------------------------------------
 1. Sections
 -------------------------------------------*/
@@ -114,6 +179,10 @@ TABLE OF CONTENT
   opacity: 0.9;	
 }
 
+.sliderimg div img{
+    width:200px;
+    height:150px;
+}
 
 .section-sm{
 	padding: 30px 0px;
@@ -369,6 +438,9 @@ TABLE OF CONTENT
   padding: 5px;
 }
 
+img {
+  border-radius: 50%;
+}
 
 .navbar-links-custom .dropdown ul{
   padding: 10px;
