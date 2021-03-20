@@ -171,7 +171,6 @@ TABLE OF CONTENT
 	opacity: .5;
 }
 
-
 .gradient-block{
     background: -webkit-linear-gradient(315deg,#6271f6 5%,#f9417a 95%);
     background: -moz-linear-gradient(315deg,#6271f6 5%,#f9417a 95%);
@@ -179,8 +178,6 @@ TABLE OF CONTENT
     border-radius: 10px;
     padding: 15px;
 }
-
-
 
 .bg-shapes{
   position: absolute;
@@ -206,7 +203,6 @@ TABLE OF CONTENT
 .section-lg{
 	padding: 80px 0px;
 }
-
 
 /*-----------------------------------------
 2. Headings
