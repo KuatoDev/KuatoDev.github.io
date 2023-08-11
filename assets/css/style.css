@@ -7894,7 +7894,7 @@ body.template-color-1 {
       font-weight: 600; 
       top: 13px;
       left: 90px; }
-    @media only screen and (min-width: 960px) {  
+    @media only screen and (min-width: 4080px) {  
       .header-wrapper .header-left .header-text { left: 190px; } 
     }
     /* Header text end */
