@@ -7894,7 +7894,7 @@ body.template-color-1 {
       font-weight: 600; 
       top: 13px;
       left: 90px; }
-    @media only screen and (min-width: 4080px) {  
+    @media only screen and (min-width: 960px) {  
       .header-wrapper .header-left .header-text { left: 190px; } 
     }
     /* Header text end */
@@ -8271,7 +8271,7 @@ body.template-color-1 {
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.8);
-  visibility: visible;
+  visibility: hidden;
   opacity: 0;
   transition: opacity .5s ease-out; }
   .popup-mobile-menu .inner {
@@ -14629,5 +14629,3 @@ body.white-version {
 
 .white-version .slider-style-6 .cd-headline span {
   color: var(--color-white) !important; }
-
-
