@@ -1,0 +1,276 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #121212;
+  color: white;
+  text-align: center;
+  line-height: 1.6;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px 0;
+  z-index: 1000;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+  align-items: center;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff5722;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ff5722;
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.about, .projects, .contact {
+  padding: 80px 20px;
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.about img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.about .text {
+  max-width: 600px;
+  text-align: left;
+}
+
+.about h2, .projects h2, .contact h2 {
+  margin-bottom: 20px;
+  color: #ff5722;
+}
+
+.projects {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.project-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.project-card {
+  flex: 0 1 calc(33.333% - 1rem);
+  max-width: 350px;
+  min-width: 250px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1),
+  0 8px 16px rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  background: #1e1e1e;
+}
+
+.project-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.project-card h3 {
+  background-color: #2a2a2a;
+  color: white;
+  padding: 16px;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-overlay p {
+  color: white;
+  margin-bottom: 15px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.project-link {
+  color: #ff5722;
+  text-decoration: none;
+  border: 2px solid #ff5722;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.project-link:hover {
+  background-color: #ff5722;
+  color: white;
+}
+
+.contact {
+  background: #1a1a1a;
+  padding: 50px 20px;
+}
+
+.contact a {
+  color: #ff5722;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact a:hover {
+  color: #ff7f50;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .project-card {
+    flex: 0 1 calc(50% - 1rem);
+  }
+
+  .about {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about .text {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .project-card {
+    flex: 0 1 100%;
+  }
+}
+
+Material Design 3 - CardView */
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Heading */
+h1, h2 {
+  margin-bottom: 10px;
+}
+
+/* Spasi antar paragraf */
+p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* List */
+ul {
+  list-style: none;
+  padding-left: 20px;
+}
+
+ul li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+}
+
+.logo img {
+  height: 48px;
+  /* Ukuran kecil sebagai ikon */
+  width: auto;
+  /* Menjaga proporsi */
+}
