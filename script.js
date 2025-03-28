@@ -1,4 +1,4 @@
-const text = "An Android App Developer";
+const text = "App Developer";
 let index = 0;
 
 function typeEffect() {
