@@ -1,11 +1,25 @@
-const text = "App Developer";
+const typingText = document.querySelector('.typing');
+const text = 'Vern Kuato';
 let index = 0;
 
-function typeEffect() {
-    document.querySelector(".typing").textContent = text.slice(0, index++);
-    if (index <= text.length) {
-        setTimeout(typeEffect, 100);
-    }
+function type() {
+  if (index < text.length) {
+    typingText.textContent += text.charAt(index);
+    index++;
+    setTimeout(type, 100);
+  } else {
+    setTimeout(erase, 2000);
+  }
 }
 
-document.addEventListener("DOMContentLoaded", typeEffect);
+function erase() {
+  if (index > 0) {
+    typingText.textContent = text.substring(0, index - 1);
+    index--;
+    setTimeout(erase, 50);
+  } else {
+    setTimeout(type, 500);
+  }
+}
+
+type();

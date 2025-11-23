@@ -6,7 +6,9 @@
 }
 
 body {
-  background: #121212;
+  /* PERUBAHAN DI SINI: Gradasi ungu gelap ke hitam */
+  /* Ungu gelap: #3a0647, Hitam: #000000 */
+  background: linear-gradient(135deg, #3a0647 0%, #000000 100%);
   color: white;
   text-align: center;
   line-height: 1.6;
@@ -57,10 +59,9 @@ nav {
 }
 
 .hero {
-  background-image: url('assets/background.webp');
-  background-size: cover; 
-  background-position: center;
-  background-repeat: no-repeat; 
+  /* MENGHAPUS BACKGROUND-IMAGE */
+  background: none; 
+  /* Pastikan elemen hero memiliki latar belakang transparan atau sesuai keinginan */
 
   height: 100vh;
   display: flex;
@@ -131,7 +132,8 @@ nav {
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
-  background: #1e1e1e;
+  /* Dibiarkan gelap agar cocok dengan tema, tapi bisa diubah jika perlu kontras */
+  background: #1e1e1e; 
 }
 
 .project-card img {
@@ -237,7 +239,7 @@ nav {
   }
 }
 
-Material Design 3 - CardView */
+/* Material Design 3 - CardView */
 .card {
   background-color: white;
   padding: 20px;

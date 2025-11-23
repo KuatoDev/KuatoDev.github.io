@@ -1,62 +1,153 @@
+/* Color Palette */
+:root {
+  --primary-color: #007bff; /* Biru cerah, untuk penekanan */
+  --secondary-color: #6c757d; /* Abu-abu sedang */
+  --background-color: #f4f7fa; /* Latar belakang sangat terang (Fallback) */
+  --card-background: #ffffff; /* Latar belakang kartu putih bersih */
+  --text-color: #343a40; /* Teks gelap */
+  --heading-color: #212529; /* Judul lebih gelap */
+  --border-color: #e9ecef; /* Garis batas terang */
+}
+
+/* Global Styles & Typography */
 body {
   font-family: 'Inter', sans-serif;
-  background: #121212;
-  color: #E0E0E0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
+  
+  /* --- PERUBAHAN UNTUK BACKGROUND GRADASI UNGU GELAP KE HITAM --- */
+  /* Ungu gelap sekitar #3a0647, Hitam #000000 */
+  background: linear-gradient(135deg, #3a0647 0%, #000000 100%); 
+  /* --- AKHIR PERUBAHAN BACKGROUND --- */
+  
+  color: var(--text-color); /* Dipertahankan untuk kontras dengan gradasi gelap */
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
 
 .container {
-  max-width: 600px;
-  display: grid;
-  gap: 16px;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid; 
+  gap: 20px;
 }
 
+h1, h2 {
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2.2em;
+}
+
+h2 {
+  font-size: 1.4em;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+
+p, ul {
+  font-weight: 400;
+  font-size: 1em;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin-bottom: 8px;
+  padding-left: 25px;
+  position: relative;
+}
+
+/* List Item Custom Bullet */
+ul li::before {
+  content: 'check_circle'; 
+  font-family: 'Material Icons';
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+strong {
+    font-weight: 600;
+}
+
+
+/* Card Styling */
+.card, .profile-card {
+  background-color: var(--card-background);
+  border-radius: 12px; 
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover, .profile-card:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Card Specifics */
 .profile-card {
-  background: #1E88E5;
-  color: white;
-  padding: 20px;
-  border-radius: 12px;
   text-align: center;
-}
-
-.card {
-  background: #1E1E1E;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+  padding: 40px 30px;
+  /* Dibiarkan putih atau warna terang agar menonjol dari latar belakang gelap */
+  background: linear-gradient(135deg, var(--card-background) 0%, #f9fbfd 100%);
 }
 
 .card-header {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  margin-bottom: 15px;
 }
 
-.profile-icon {
-  font-size: 36px;
+/* Styling untuk gambar profil */
+.profile-image {
+  /* Ukuran 50vw dari HTML, pastikan diatur di style inline atau di sini jika Anda ingin memindahkannya */
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
-h1, h2 {
-  margin: 0;
+.profile-card p {
+  color: var(--secondary-color);
   font-weight: 600;
-  color: #white;
+  letter-spacing: 0.5px;
 }
 
-.material-icons {
-  vertical-align: middle;
+/* Icon Styling in Headers */
+.card h2 .material-icons {
   margin-right: 8px;
-  color: #white;
+  color: var(--primary-color);
+  font-size: 1.2em;
 }
 
-ul {
-  padding-left: 20px;
-}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px auto;
+    gap: 15px;
+  }
+  
+  .card, .profile-card {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 2em;
+  }
 
-ul li {
-  color: #E0E0E0;
+  h2 {
+    font-size: 1.3em;
+  }
 }
