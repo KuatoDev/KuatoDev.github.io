@@ -1,10 +1,10 @@
-/* --- CSS VARIABLES (COPAS DARI STYLE.CSS BIAR SAMA) --- */
+/* --- CSS VARIABLES (HARUS MATCH SAMA STYLE.CSS) --- */
 :root {
   /* DARK MODE DEFAULTS */
   --bg-core: #10002b;
   --text-main: #ffffff;
   --text-muted: #b0b0b0;
-  --primary-accent: #00b4d8; /* Biru Neon khusus profile */
+  --primary-accent: #00b4d8; 
   
   --glass-bg: rgba(20, 0, 40, 0.4);
   --glass-border: rgba(255, 255, 255, 0.2);
@@ -20,26 +20,29 @@
   --btn-bg: rgba(255, 255, 255, 0.1);
 }
 
-/* LIGHT MODE OVERRIDE */
+/* LIGHT MODE OVERRIDE (ROYAL INDIGO) 👑 */
 @media (prefers-color-scheme: light) {
   :root {
-    --bg-core: #f0f4f8;
-    --text-main: #2d3436;
-    --text-muted: #636e72;
-    --primary-accent: #007bff; /* Biru Standar */
+    --bg-core: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
     
-    --glass-bg: rgba(255, 255, 255, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.8);
+    /* GANTI PINK/MERAH JADI INDIGO */
+    --primary-accent: #4f46e5; 
+    
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.6);
     
     --text-shadow: none;
-    --box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    --box-shadow: 0 4px 20px rgba(148, 163, 184, 0.15);
     
-    --orb-1: #ffafcc;
-    --orb-2: #a2d2ff;
-    --orb-3: #fcd5ce;
+    /* Orbs Colors (Pastel Indigo Palette) */
+    --orb-1: #c7d2fe;
+    --orb-2: #ddd6fe;
+    --orb-3: #bae6fd;
     --orb-opacity: 1;
     
-    --btn-bg: rgba(0, 0, 0, 0.05);
+    --btn-bg: rgba(79, 70, 229, 0.05);
   }
 }
 
@@ -116,7 +119,7 @@ ul li::before {
   position: absolute; left: 0; color: var(--primary-accent);
   font-size: 18px; line-height: 1.6;
 }
-strong { font-weight: 600; color: var(--text-main); } /* Strong ikut warna teks utama */
+strong { font-weight: 600; color: var(--text-main); }
 
 .card, .profile-card {
   background-color: var(--glass-bg);
@@ -155,7 +158,7 @@ strong { font-weight: 600; color: var(--text-main); } /* Strong ikut warna teks 
 .back-btn:hover {
   background: var(--primary-accent); border-color: var(--primary-accent);
   color: white !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
   transform: translateX(-3px);
 }
 
