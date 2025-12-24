@@ -23,29 +23,38 @@ function erase() {
   }
 }
 
-/* --- DYNAMIC BLOG LOADING (JSON) --- */
+/* --- DYNAMIC BLOG LOADING --- */
 async function loadBlogPosts() {
   const blogContainer = document.querySelector('.blog-list');
-  
-  // Cek apakah elemen .blog-list ada di halaman ini (biar ga error di halaman lain)
   if (!blogContainer) return;
 
   try {
-    // 1. Ambil data dari posts.json
-    const response = await fetch('blog/posts.json');
-    if (!response.ok) throw new Error("Gagal load JSON");
-    
-    const posts = await response.json();
+    // 1. Bersihkan dulu isinya biar gak dobel (Hapus text Loading)
+    blogContainer.innerHTML = '<p style="color: var(--text-muted); width: 100%; text-align: center;">Mengambil data...</p>';
 
-    // 2. Ambil cuma 3 artikel terbaru (biar halaman depan ga kepanjangan)
-    const latestPosts = posts.slice(0, 3);
+    // 2. Tentukan path JSON yang benar (Cek apakah kita di dalam folder atau root)
+    // Kalau URL mengandung 'blog/', berarti kita di dalam folder, harus mundur (../)
+    const isInsideFolder = window.location.pathname.includes('/blog/');
+    const jsonPath = isInsideFolder ? '../blog/posts.json' : 'blog/posts.json';
+
+    const response = await fetch(jsonPath);
+    if (!response.ok) throw new Error("File JSON tidak ditemukan");
     
-    // 3. Generate HTML untuk setiap artikel
+    let posts = await response.json();
+
+    // 3. Cek Limit (Index vs Blog Page)
+    if (blogContainer.classList.contains('home-limit')) {
+      posts = posts.slice(0, 1); // Cuma 1 artikel buat Home
+    }
+    
+    // 4. Render HTML
     let blogHTML = '';
-    
-    latestPosts.forEach(post => {
+    posts.forEach(post => {
+      // Fix link kalau kita lagi di dalam folder
+      const linkPath = isInsideFolder && !post.link.startsWith('http') ? '../' + post.link : post.link;
+
       blogHTML += `
-        <a href="${post.link}" class="blog-card">
+        <a href="${linkPath}" class="blog-card">
           <div class="blog-meta">
             <span class="material-icons" style="font-size: 14px;">calendar_today</span> ${post.date}
             <span>•</span>
@@ -58,18 +67,24 @@ async function loadBlogPosts() {
       `;
     });
 
-    // 4. Masukkan ke dalam HTML
+    // 5. Masukkan ke container (Loading otomatis hilang ketimpa ini)
     blogContainer.innerHTML = blogHTML;
 
   } catch (error) {
-    console.error("Error loading blog posts:", error);
-    // Fallback kalau error: Tampilkan pesan manual atau kosongkan
-    blogContainer.innerHTML = '<p style="color:var(--text-muted)">Gagal memuat artikel terbaru.</p>';
+    console.error("Error:", error);
+    // Tampilkan pesan error kalau gagal
+    blogContainer.innerHTML = `
+      <div style="text-align: center; width: 100%; color: var(--text-muted);">
+        <span class="material-icons" style="font-size: 40px; display: block; margin-bottom: 10px;">error_outline</span>
+        <p>Gagal memuat artikel.</p>
+        <small style="opacity: 0.7;">(Pastikan buka via Live Server / GitHub Pages, bukan klik file langsung)</small>
+      </div>
+    `;
   }
 }
 
 /* --- INIT --- */
 document.addEventListener('DOMContentLoaded', () => {
-  if (typingText) type(); // Jalankan Typing Effect
-  loadBlogPosts(); // Jalankan Blog Loader
+  if (typingText) type(); 
+  loadBlogPosts(); 
 });

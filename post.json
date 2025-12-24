@@ -1,16 +1,74 @@
-[
-  {
-    "title": "Akhirnya! At a Glance Bisa Dihapus dari Pixel Launcher",
-    "date": "25 Dec 2025",
-    "tag": "Android Update",
-    "description": "Android 16 QPR3 Beta 1 bawa fitur 'Show on home screen' buat matiin At a Glance. Server side update, cek detailnya!",
-    "link": "blog/article-2.html"
-  },
-  {
-    "title": "OpenAI Bikin Harga Hardware Naik Gila-gilaan?",
-    "date": "24 Dec 2025",
-    "tag": "Tech News",
-    "description": "Bahaya Project Stargate: OpenAI borong 40% wafer DRAM dunia cuma buat 'Resource Denial'. Harga SSD & RAM siap meroket.",
-    "link": "blog/article-1.html"
+/* --- TYPING EFFECT --- */
+const typingText = document.querySelector('.typing');
+const text = 'Vern Kuato';
+let index = 0;
+
+function type() {
+  if (index < text.length) {
+    typingText.textContent += text.charAt(index);
+    index++;
+    setTimeout(type, 100);
+  } else {
+    setTimeout(erase, 2000);
   }
-]
+}
+
+function erase() {
+  if (index > 0) {
+    typingText.textContent = text.substring(0, index - 1);
+    index--;
+    setTimeout(erase, 50);
+  } else {
+    setTimeout(type, 500);
+  }
+}
+
+/* --- DYNAMIC BLOG LOADING (SMART) --- */
+async function loadBlogPosts() {
+  const blogContainer = document.querySelector('.blog-list');
+  
+  if (!blogContainer) return; // Stop kalau gak ada container blog
+
+  try {
+    const response = await fetch('blog/posts.json');
+    if (!response.ok) throw new Error("Gagal load JSON");
+    
+    let posts = await response.json();
+
+    // LOGIKA PINTAR:
+    // Cek apakah container punya class 'home-limit'
+    // Kalau IYA (di Index), ambil 3 aja. Kalau ENGGAK (di Blog), ambil semua.
+    if (blogContainer.classList.contains('home-limit')) {
+      posts = posts.slice(0, 3);
+    }
+    
+    let blogHTML = '';
+    
+    posts.forEach(post => {
+      blogHTML += `
+        <a href="${post.link}" class="blog-card">
+          <div class="blog-meta">
+            <span class="material-icons" style="font-size: 14px;">calendar_today</span> ${post.date}
+            <span>•</span>
+            <span class="material-icons" style="font-size: 14px;">tag</span> ${post.tag}
+          </div>
+          <h3>${post.title}</h3>
+          <p>${post.description}</p>
+          <span class="read-more-link">Read Article <span class="material-icons" style="font-size: 16px;">arrow_forward</span></span>
+        </a>
+      `;
+    });
+
+    blogContainer.innerHTML = blogHTML;
+
+  } catch (error) {
+    console.error("Error loading blog posts:", error);
+    blogContainer.innerHTML = '<p style="color:var(--text-muted)">Gagal memuat artikel.</p>';
+  }
+}
+
+/* --- INIT --- */
+document.addEventListener('DOMContentLoaded', () => {
+  if (typingText) type(); 
+  loadBlogPosts(); 
+});
