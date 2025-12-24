@@ -1,3 +1,4 @@
+/* --- TYPING EFFECT --- */
 const typingText = document.querySelector('.typing');
 const text = 'Vern Kuato';
 let index = 0;
@@ -22,4 +23,24 @@ function erase() {
   }
 }
 
-type();
+// Jalankan saat DOM siap
+document.addEventListener('DOMContentLoaded', () => {
+  if (typingText) type();
+});
+
+/* --- SMOOTH SCROLL --- */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
