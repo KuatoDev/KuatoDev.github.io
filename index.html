@@ -19,8 +19,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
   <link rel="icon" href="logo.ico" type="image/x-icon">
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -34,10 +36,13 @@
   <header>
     <nav>
       <div class="logo">
-        <img src="assets/logo.svg" alt="Vern Kuato Logo" width="40" height="40">
+        <a href="index.html" style="display: flex; align-items: center;">
+          <img src="assets/logo.svg" alt="Vern Kuato Logo" width="40" height="40">
+        </a>
       </div>
       <ul class="nav-links">
-        <li><a href="#blog">Blog</a></li> <li><a href="#projects">Projects</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="profile.html">Profile</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -51,18 +56,17 @@
     </p>
   </section>
 
-<section id="blog" class="blog">
-  <h2>Latest Article</h2> <div class="blog-list home-limit">
-   <p class="loading-text" style="color: var(--text-muted); text-align: center; width: 100%;">Loading articles...</p>
-</div>
-    <p style="color: var(--text-muted);">Loading article...</p>
-  </div>
-  
-  <div style="margin-top: 30px;">
-    <a href="blog.html" class="project-link">View All Posts</a>
-  </div>
-</section>
-
+  <section id="blog" class="blog">
+    <h2>Latest Article</h2>
+    
+    <div class="blog-list home-limit">
+       <p class="loading-text" style="color: var(--text-muted); text-align: center; width: 100%;">Loading articles...</p>
+    </div>
+    
+    <div style="margin-top: 30px;">
+      <a href="blog.html" class="project-link">View All Posts</a>
+    </div>
+  </section>
 
   <section id="projects" class="projects">
     <h2>My Projects</h2>

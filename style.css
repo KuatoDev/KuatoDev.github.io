@@ -447,3 +447,79 @@ nav {
   .nav-links { gap: 5px; }
   .nav-links a { padding: 6px 12px; font-size: 12px; }
 }
+/* --- SINGLE ARTICLE STYLES --- */
+.article-container {
+  padding: 120px 20px 60px; /* Padding atas gede biar ga ketutup Navbar */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.single-article-card {
+  /* Inherit Glassmorphism */
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--box-shadow);
+  border-radius: 20px; /* Sedikit lebih bulet */
+  
+  padding: 40px; /* Spasi dalem lebih lega */
+  width: 100%;
+  max-width: 800px; /* Lebar maksimal enak buat baca */
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.article-header {
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.article-header h1 {
+  font-size: 2em;
+  color: var(--text-main);
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.article-meta {
+  display: inline-flex;
+  gap: 15px;
+  font-size: 0.9em;
+  color: var(--text-muted);
+  background: rgba(0,0,0,0.1); /* Background tipis buat meta */
+  padding: 5px 15px;
+  border-radius: 20px;
+}
+
+.article-content {
+  color: var(--text-main);
+  line-height: 1.8;
+  font-size: 1.05em;
+}
+
+.article-content h2, .article-content h3 {
+  color: var(--primary-accent);
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.article-content p {
+  margin-bottom: 20px;
+}
+
+/* Quote/Highlight Box */
+.highlight-box {
+  background: rgba(var(--primary-accent-rgb), 0.1); /* Fallback */
+  background: var(--btn-bg);
+  border-left: 4px solid var(--primary-accent);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 30px 0;
+  font-style: italic;
+}
