@@ -9,7 +9,9 @@
   /* Glass Colors */
   --glass-bg: rgba(20, 0, 40, 0.4);
   --glass-border: rgba(255, 255, 255, 0.2);
-  --header-glass: rgba(255, 255, 255, 0.15);
+  
+  /* UPDATED: HEADER LEBIH BENING (0.15 -> 0.05) */
+  --header-glass: rgba(255, 255, 255, 0.05); 
   
   /* Shadows */
   --text-shadow: 0 4px 10px rgba(0,0,0,0.8);
@@ -33,25 +35,25 @@
     --bg-core: #f8fafc;
     --text-main: #1e293b;
     --text-muted: #64748b;
-    
-    /* GANTI PINK/MERAH JADI INDIGO (UNGU BIRU) */
     --primary-accent: #4f46e5; 
     
     /* Glass Colors */
-    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-bg: rgba(255, 255, 255, 0.65);
     --glass-border: rgba(255, 255, 255, 0.6); 
-    --header-glass: rgba(255, 255, 255, 0.85);
+    
+    /* UPDATED: HEADER LEBIH BENING (0.85 -> 0.3) */
+    /* Ini biar ga kaya blok putih solid */
+    --header-glass: rgba(255, 255, 255, 0.3);
     
     --text-shadow: none;
     --box-shadow: 0 4px 20px rgba(148, 163, 184, 0.15);
     
-    /* Orbs Colors (Pastel Indigo Palette) */
-    --orb-1: #c7d2fe; /* Pastel Indigo */
-    --orb-2: #ddd6fe; /* Pastel Violet */
-    --orb-3: #bae6fd; /* Pastel Sky Blue */
+    --orb-1: #c7d2fe;
+    --orb-2: #ddd6fe;
+    --orb-3: #bae6fd;
     --orb-opacity: 1;
     
-    --btn-bg: rgba(79, 70, 229, 0.05); /* Tint Indigo tipis */
+    --btn-bg: rgba(79, 70, 229, 0.05);
     --btn-hover-text: #ffffff;
   }
 }
@@ -123,7 +125,7 @@ body {
   100% { transform: translate(-20px, -30px) scale(0.9); }
 }
 
-/* --- HEADER FIX (CARD STYLE) --- */
+/* --- HEADER FIX (EXTRA TRANSPARENT) --- */
 header {
   position: fixed;
   top: 20px;
@@ -132,7 +134,10 @@ header {
   width: 90%;
   max-width: 1100px;
   
+  /* Pake variabel baru yg lebih transparan */
   background: var(--header-glass);
+  
+  /* Blur tetep kenceng biar teks kebaca */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   
@@ -185,7 +190,7 @@ nav {
   border-color: var(--primary-accent);
   color: var(--btn-hover-text);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4); /* Shadow Indigo */
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4); 
 }
 
 /* --- HERO --- */
@@ -312,10 +317,10 @@ nav {
   transform: translateY(-2px);
 }
 
-/* --- BLOG STYLES (NEW) --- */
+/* --- BLOG STYLES --- */
 .blog {
   opacity: 0;
-  animation: fadeInUpStandard 0.8s ease-out 0.3s forwards; /* Muncul sebelum projects */
+  animation: fadeInUpStandard 0.8s ease-out 0.3s forwards;
 }
 
 .blog-list {
@@ -326,7 +331,7 @@ nav {
 }
 
 .blog-card {
-  flex: 0 1 500px; /* Sedikit lebih lebar dari project */
+  flex: 0 1 500px;
   max-width: 500px;
   background: var(--glass-bg);
   backdrop-filter: blur(15px);
@@ -339,8 +344,8 @@ nav {
   transition: transform 0.3s ease, border-color 0.3s ease;
   position: relative;
   overflow: hidden;
-  text-decoration: none; /* Biar seluruh card jadi link */
-  display: block; /* Agar bisa diklik */
+  text-decoration: none;
+  display: block;
 }
 
 .blog-card:hover {
@@ -386,14 +391,67 @@ nav {
   gap: 10px;
 }
 
-/* Typography untuk isi artikel (jika diperlukan) */
-.article-content { text-align: left; line-height: 1.8; color: var(--text-main); }
-.article-content h1, .article-content h2 { color: var(--primary-accent); margin-top: 30px; margin-bottom: 15px; }
-.article-content p { margin-bottom: 20px; font-size: 1.05em; }
-.article-content code { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; color: #ff9100; font-family: monospace; }
-.article-content pre { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; overflow-x: auto; margin-bottom: 20px; border: 1px solid var(--glass-border); }
-.article-header { text-align: center; margin-bottom: 40px; border-bottom: 1px solid var(--glass-border); padding-bottom: 20px; }
+/* --- ABOUT PREVIEW SECTION (Profile Home) --- */
+.about-preview {
+  opacity: 0;
+  animation: fadeInUpStandard 0.8s ease-out 0.5s forwards;
+  padding: 80px 20px;
+}
 
+.about-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--box-shadow);
+  border-radius: 24px;
+  
+  max-width: 900px;
+  margin: 0 auto; 
+  padding: 50px;
+  
+  /* Hapus display flex disini, kita handle manual di HTML */
+  text-align: left;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-accent);
+}
+
+.profile-thumb {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+
+.about-info h3 {
+  font-size: 2em;
+  color: var(--text-main);
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+.about-info .role {
+  color: var(--primary-accent);
+  font-weight: 600;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  display: block;
+  letter-spacing: 1px;
+}
+
+.about-info p {
+  color: var(--text-muted);
+  margin-bottom: 25px;
+  line-height: 1.7;
+  font-size: 1.05em;
+}
 
 /* --- CONTACT --- */
 .contact {
@@ -438,6 +496,20 @@ nav {
   .nav-links { gap: 10px; }
   .nav-links a { padding: 8px 16px; font-size: 13px; }
   .project-card, .blog-card { flex: 0 1 100%; }
+  
+  /* Responsive Profile Card */
+  .about-card {
+    padding: 30px 20px;
+  }
+  .about-card > div { /* Wrapper foto & text */
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  .profile-thumb {
+    width: 120px;
+    height: 120px;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -447,26 +519,26 @@ nav {
   .nav-links { gap: 5px; }
   .nav-links a { padding: 6px 12px; font-size: 12px; }
 }
+
 /* --- SINGLE ARTICLE STYLES --- */
 .article-container {
-  padding: 120px 20px 60px; /* Padding atas gede biar ga ketutup Navbar */
+  padding: 120px 20px 60px;
   min-height: 100vh;
   display: flex;
   justify-content: center;
 }
 
 .single-article-card {
-  /* Inherit Glassmorphism */
   background: var(--glass-bg);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border: 1px solid var(--glass-border);
   box-shadow: var(--box-shadow);
-  border-radius: 20px; /* Sedikit lebih bulet */
+  border-radius: 20px;
   
-  padding: 40px; /* Spasi dalem lebih lega */
+  padding: 40px;
   width: 100%;
-  max-width: 800px; /* Lebar maksimal enak buat baca */
+  max-width: 800px;
   text-align: left;
   position: relative;
   overflow: hidden;
@@ -492,7 +564,7 @@ nav {
   gap: 15px;
   font-size: 0.9em;
   color: var(--text-muted);
-  background: rgba(0,0,0,0.1); /* Background tipis buat meta */
+  background: rgba(0,0,0,0.1);
   padding: 5px 15px;
   border-radius: 20px;
 }
@@ -513,9 +585,7 @@ nav {
   margin-bottom: 20px;
 }
 
-/* Quote/Highlight Box */
 .highlight-box {
-  background: rgba(var(--primary-accent-rgb), 0.1); /* Fallback */
   background: var(--btn-bg);
   border-left: 4px solid var(--primary-accent);
   padding: 20px;
