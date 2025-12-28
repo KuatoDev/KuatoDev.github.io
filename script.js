@@ -4,7 +4,7 @@ const text = 'Vern Kuato';
 let index = 0;
 
 function type() {
-  if (!typingText) return;
+  if (!typingText) return; // Safety check
   if (index < text.length) {
     typingText.textContent += text.charAt(index);
     index++;
@@ -15,7 +15,7 @@ function type() {
 }
 
 function erase() {
-  if (!typingText) return; 
+  if (!typingText) return; // Safety check
   if (index > 0) {
     typingText.textContent = text.substring(0, index - 1);
     index--;
@@ -41,6 +41,7 @@ async function loadBlogPosts() {
     
     let posts = await response.json();
 
+    // Logic Limit di Home
     if (blogContainer.classList.contains('home-limit')) {
       posts = posts.slice(0, 1);
     }
@@ -80,10 +81,12 @@ function loadIndexWinner() {
     const displayElement = document.getElementById('lastLemburSummary');
     if (!displayElement) return; // Kalau gak ada elemennya (bukan di index), skip
 
+    // Ambil dari LocalStorage browser
     const lastWinner = localStorage.getItem('lastLemburWinner');
     
     if (lastWinner) {
         displayElement.textContent = `Pemenang Terakhir: ${lastWinner}`;
+        // Styling dikit biar highlight
         displayElement.style.color = '#fff';
         displayElement.style.textShadow = '0 0 5px rgba(255,255,255,0.8)';
     } else {
@@ -94,7 +97,7 @@ function loadIndexWinner() {
 /* --- SPIN WHEEL LOGIC (SPIN PAGE) --- */
 function initSpinWheel() {
     const canvas = document.getElementById('wheelCanvas');
-    if (!canvas) return; 
+    if (!canvas) return; // Only run if canvas exists (on spin page)
 
     const ctx = canvas.getContext('2d');
     const spinBtn = document.getElementById('spinBtn');
@@ -129,6 +132,7 @@ function initSpinWheel() {
             ctx.lineTo(radius, radius);
             ctx.fill();
             
+            // Border antar slice
             ctx.strokeStyle = "rgba(255,255,255,0.2)";
             ctx.lineWidth = 2;
             ctx.stroke();
@@ -158,9 +162,11 @@ function initSpinWheel() {
         spinBtn.disabled = true;
         spinBtn.innerText = "LAGI MUTER...";
 
+        // Putaran Random
         const randomSpin = Math.floor(Math.random() * 360) + (360 * 5); 
         currentAngle += randomSpin; 
 
+        // Putar Canvas (Negative = Counter Clockwise)
         canvas.style.transform = `rotate(-${currentAngle}deg)`;
 
         setTimeout(() => {
@@ -169,28 +175,43 @@ function initSpinWheel() {
             spinBtn.innerText = "PUTAR GES! 🎲";
             
             const degPerSlice = 360 / names.length;
-           
+            
+            // Logic Pointer Fix (Counter Clockwise Rotation vs Static Pointer at Top)
             const targetRotation = (270 + currentAngle) % 360;
-           
+            
+            // Hitung Index
             let index = Math.floor(targetRotation / degPerSlice);
             index = index % names.length;
             
             const yanglembur = names[index];
+            
+            // --- SAVE WINNER TO LOCAL STORAGE ---
             localStorage.setItem('lastLemburWinner', yanglembur);
             
             alert(`Mampus!! Si ${yanglembur} yang lembur! Awokawokaowkaowk`);
 
         }, 5000); 
     }
+
+    // Init Draw
     drawWheel();
     
+    // Listeners
     namesInput.addEventListener('input', drawWheel);
     spinBtn.addEventListener('click', spin);
 }
 
+/* --- GLOBAL INIT --- */
 document.addEventListener('DOMContentLoaded', () => {
   type(); 
   loadBlogPosts(); 
-  loadIndexWinner();
-  initSpinWheel();
+  loadIndexWinner(); // Load winner status on index
+  initSpinWheel(); // Try initializing spin wheel
+  
+  // --- PWA SERVICE WORKER REGISTRATION ---
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then((reg) => console.log('Service Worker Registered!', reg))
+      .catch((err) => console.log('Service Worker Gagal!', err));
+  }
 });
