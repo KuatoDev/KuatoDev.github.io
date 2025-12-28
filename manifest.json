@@ -3,8 +3,8 @@
   "short_name": "VernKuato",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#10002b",
-  "theme_color": "#10002b",
+  "background_color": "#f8fafc",
+  "theme_color": "#f8fafc",
   "orientation": "portrait",
   "icons": [
     {
