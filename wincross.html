@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#10002b">
+
+  <title>WINCross | Vern Kuato</title>
+  <link rel="icon" href="assets/logo.ico" type="image/x-icon">
+  
+  <meta name="description" content="Manage dual-boot Windows and Android directly from your Android device.">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"> 
+  
+  <style>
+    /* Custom Styles for WINCross Page */
+    .badge-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .badge {
+      font-size: 0.8em;
+      padding: 5px 12px;
+      border-radius: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .badge-blue { background: rgba(33, 150, 243, 0.2); color: #64b5f6; border: 1px solid rgba(33, 150, 243, 0.4); }
+    .badge-red { background: rgba(244, 67, 54, 0.2); color: #e57373; border: 1px solid rgba(244, 67, 54, 0.4); }
+    
+    .feature-list, .perm-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+    .feature-list li, .perm-list li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.95em;
+    }
+    .feature-list i { color: var(--primary-accent); margin-top: 3px; }
+    .perm-list i { color: var(--text-muted); margin-top: 3px; }
+
+    .device-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .device-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 15px;
+    }
+    .device-card h4 {
+      margin-bottom: 10px;
+      color: var(--primary-accent);
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 5px;
+    }
+
+    @media (max-width: 600px) {
+      .device-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="background-wrapper">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  
+  <div class="toolbar-area">
+      <a href="index.html" class="back-btn">
+          <span class="material-icons">arrow_back</span> Back to Home
+      </a>
+  </div>
+
+  <div class="article-container">
+    <article class="single-article-card">
+      
+      <div class="article-header" style="border-bottom: none; padding-bottom: 0;">
+        <img src="assets/woahelper.webp" alt="WINCross Banner" style="width: 100%; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--glass-border);">
+        
+        <h1>WINCross</h1>
+        <p style="color: var(--text-muted); font-size: 0.9em; margin-bottom: 15px;">Cross-Platform Windows Control (formerly WoA Helper)</p>
+
+        <div class="badge-container">
+          <span class="badge badge-blue"><i class="material-icons" style="font-size: 14px;">smartphone</i> Android 12+</span>
+          <span class="badge badge-red"><i class="material-icons" style="font-size: 14px;">vpn_key</i> Root Required</span>
+          <span class="badge" style="background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border);"><i class="material-icons" style="font-size: 14px;">layers</i> Dual Boot</span>
+        </div>
+      </div>
+
+      <div class="article-content">
+        <p>
+          <strong>WINCross</strong> is a powerful utility designed to manage dual-boot environments between Windows and Android directly from your Android device. It allows you to perform critical maintenance, flash UEFI, and optimize Windows without needing to reboot.
+        </p>
+
+        <div class="highlight-box" style="border-left-color: #f44336;">
+          <strong><i class="material-icons" style="vertical-align: middle;">warning</i> Disclaimer:</strong><br>
+          We are not responsible for bricked devices, missing recovery partitions, dead microSD cards, runaway pets, or nuclear wars. Flashing UEFI or modifying partitions is risky. <strong>USE AT YOUR OWN RISK!</strong>
+        </div>
+
+        <h3><i class="material-icons" style="vertical-align: middle;">stars</i> Key Features</h3>
+        <ul class="feature-list">
+          <li><i class="material-icons">check_circle</i> <strong>Mount Windows:</strong> Access Windows partitions directly inside Android.</li>
+          <li><i class="material-icons">check_circle</i> <strong>Backup & Restore:</strong> Backup critical partitions and restore them safely.</li>
+          <li><i class="material-icons">check_circle</i> <strong>UEFI Manager:</strong> Flash and update UEFI images for Windows on ARM.</li>
+          <li><i class="material-icons">check_circle</i> <strong>Quick Switch:</strong> Reboot to Windows instantly via App or Homescreen Widget.</li>
+          <li><i class="material-icons">check_circle</i> <strong>Optimization:</strong> Install ReviOS/AtlasOS Playbooks & Frameworks.</li>
+          <li><i class="material-icons">check_circle</i> <strong>Toolbox:</strong> Insert variety of WOA scripts & Switch to Android (STA) tools.</li>
+        </ul>
+
+        <h3><i class="material-icons" style="vertical-align: middle;">devices</i> Supported Devices</h3>
+        <p style="font-size: 0.9em; color: var(--text-muted);">Fully tested and supported on:</p>
+        <div class="device-grid">
+            <div class="device-card">
+                <h4>POCO X3 Pro (Vayu)</h4>
+                <ul class="feature-list" style="margin-top: 0;">
+                    <li><small>✅ Mount/Unmount</small></li>
+                    <li><small>✅ Backup & Restore</small></li>
+                    <li><small>✅ Flash & Update UEFI</small></li>
+                </ul>
+            </div>
+            <div class="device-card">
+                <h4>Xiaomi Pad 5 (Nabu)</h4>
+                <ul class="feature-list" style="margin-top: 0;">
+                    <li><small>✅ Mount/Unmount</small></li>
+                    <li><small>✅ Backup & Restore</small></li>
+                    <li><small>✅ Flash & Update UEFI</small></li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 30px;"><i class="material-icons" style="vertical-align: middle;">lock</i> Required Permissions</h3>
+        <ul class="perm-list">
+          <li><i class="material-icons">admin_panel_settings</i> <strong>SuperUser:</strong> Mount/Unmount Windows partitions.</li>
+          <li><i class="material-icons">sd_storage</i> <strong>Manage External Storage:</strong> Backup/Restore operations.</li>
+          <li><i class="material-icons">wifi</i> <strong>Internet:</strong> Download resources & updates.</li>
+          <li><i class="material-icons">widgets</i> <strong>Background Services:</strong> For widget functionality (Switch to Windows).</li>
+        </ul>
+
+        <h3>About Project</h3>
+        <p>
+          Built with love on a <strong>Poco X3 Pro</strong> using Gradle, AndroidIDE, and Termux.
+          <br><em>PRs are welcome on GitHub!</em>
+        </p>
+
+        <div style="margin-top: 40px; text-align: center;">
+          <a href="https://t.me/vernkuato/190" target="_blank" class="project-link" style="padding: 15px 40px; font-size: 1.1em;">
+            <i class="material-icons" style="vertical-align: middle; margin-right: 5px;">download</i> Download App
+          </a>
+        </div>
+
+      </div>
+
+    </article>
+  </div>
+
+  <script src="script.js"></script> 
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#10002b">
+
+  <title>Wear Level Insight | Vern Kuato</title>
+  <link rel="icon" href="assets/logo.ico" type="image/x-icon">
+  
+  <meta name="description" content="Android app to check storage health (UFS/eMMC) for rooted devices.">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"> 
+  
+  <style>
+    /* Custom style buat badges di page ini */
+    .badge-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 0.8em;
+      padding: 5px 12px;
+      border-radius: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .badge-green { background: rgba(76, 175, 80, 0.2); color: #81c784; border: 1px solid rgba(76, 175, 80, 0.4); }
+    .badge-orange { background: rgba(255, 152, 0, 0.2); color: #ffb74d; border: 1px solid rgba(255, 152, 0, 0.4); }
+    
+    .tech-list li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tech-list i {
+      color: var(--primary-accent);
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="background-wrapper">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  
+  <div class="toolbar-area">
+      <a href="index.html" class="back-btn">
+          <span class="material-icons">arrow_back</span> Back to Home
+      </a>
+  </div>
+
+  <div class="article-container">
+    <article class="single-article-card">
+      
+      <div class="article-header" style="border-bottom: none; padding-bottom: 0;">
+        <img src="assets/wearlevelinsight.webp" alt="Wear Level Insight Banner" style="width: 100%; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--glass-border);">
+        
+        <h1>Wear Level Insight</h1>
+        
+        <div class="badge-container" style="justify-content: center;">
+          <span class="badge badge-green"><i class="material-icons" style="font-size: 14px;">verified</i> Version 4.0.0</span>
+          <span class="badge badge-orange"><i class="material-icons" style="font-size: 14px;">android</i> Android 12+</span>
+          <span class="badge" style="background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border);"><i class="material-icons" style="font-size: 14px;">vpn_key</i> Root Required</span>
+        </div>
+      </div>
+
+      <div class="article-content">
+        <p>
+          Introducing <strong>"Wear Level Insight"</strong> - the Android app designed to check the health of your device's storage. Easily detect potential issues with your storage (UFS/eMMC) ensuring that your device runs smoothly.
+        </p>
+
+        <div class="highlight-box" style="border-left-color: #f44336;">
+          <strong><i class="material-icons" style="vertical-align: middle;">warning</i> Disclaimer:</strong><br>
+          We are not responsible for bricked devices, missing recovery partitions, dead microSD cards, runaway pets, nuclear wars, or you getting fired because you flashed ABL partitions. <strong>USE AT YOUR OWN RISK!</strong>
+        </div>
+
+        <h3><i class="material-icons" style="vertical-align: middle;">settings</i> Requirements & Compatibility</h3>
+        <ul class="tech-list" style="list-style: none; padding: 0; margin-top: 15px;">
+          <li><i class="material-icons">check_circle</i> <strong>Root Access:</strong> Required to scan storage partitions.</li>
+          <li><i class="material-icons">check_circle</i> <strong>Storage Types:</strong> UFS 1.0 up to 4.0 (Functionality depends on OEM Kernel).</li>
+          <li><i class="material-icons">check_circle</i> <strong>Project Status:</strong> Most Android devices will work, but some edge cases may vary.</li>
+        </ul>
+
+        <h3><i class="material-icons" style="vertical-align: middle;">translate</i> Supported Languages</h3>
+        <ul class="tech-list" style="list-style: none; padding: 0; margin-top: 15px;">
+          <li><i class="material-icons">language</i> English (Default)</li>
+          <li><i class="material-icons">language</i> Indonesian</li>
+          <li><i class="material-icons">language</i> Ukrainian</li>
+          <li><i class="material-icons">language</i> Russian</li>
+        </ul>
+
+        <h3>About the Project</h3>
+        <p>
+          This application is built using Gradle on a <strong>Poco X3 Pro</strong>. 
+          <br>Tools used:
+        </p>
+        <ul>
+          <li><strong>Photo Editor & SVG2Android:</strong> For assets and vector drawables.</li>
+          <li><strong>Android Code Studio:</strong> For debugging, log listening, and compiling.</li>
+          <li><strong>Termux:</strong> Used for various build tasks.</li>
+        </ul>
+
+        <div style="margin-top: 40px; text-align: center;">
+          <a href="https://www.pling.com/p/1977455/" target="_blank" class="project-link" style="padding: 15px 40px; font-size: 1.1em;">
+            <i class="material-icons" style="vertical-align: middle; margin-right: 5px;">download</i> Download App
+          </a>
+        </div>
+
+      </div>
+
+    </article>
+  </div>
+
+  <script src="script.js"></script> 
+</body>
+</html>
