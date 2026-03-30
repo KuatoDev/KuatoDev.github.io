@@ -4,7 +4,7 @@ const text = 'Vern Kuato';
 let index = 0;
 
 function type() {
-  if (!typingText) return; // Safety check
+  if (!typingText) return; 
   if (index < text.length) {
     typingText.textContent += text.charAt(index);
     index++;
@@ -15,7 +15,7 @@ function type() {
 }
 
 function erase() {
-  if (!typingText) return; // Safety check
+  if (!typingText) return; 
   if (index > 0) {
     typingText.textContent = text.substring(0, index - 1);
     index--;
@@ -28,43 +28,41 @@ function erase() {
 /* --- DYNAMIC BLOG LOADING --- */
 async function loadBlogPosts() {
   const blogContainer = document.querySelector('.blog-list');
-  if (!blogContainer) return; 
+  if (!blogContainer) return;
 
-  // Detect location
   const isInsideBlogFolder = window.location.pathname.includes('/blog/');
-  const basePath = isInsideBlogFolder ? '../' : '';
-  const jsonPath = basePath + 'blog/posts.json'; 
+  const basePath = isInsideBlogFolder ? '../': '';
+  const jsonPath = basePath + 'blog/posts.json';
 
   try {
     const response = await fetch(jsonPath);
-    if (!response.ok) throw new Error("Gagal load data json");
-    
+    if (!response.ok) throw new Error("Gagal load data");
+
     let posts = await response.json();
 
-    // Logic Limit di Home
     if (blogContainer.classList.contains('home-limit')) {
       posts = posts.slice(0, 1);
     }
-    
+
     let blogHTML = '';
-    
+
     posts.forEach(post => {
       let finalLink = post.link;
       if (isInsideBlogFolder) {
-         finalLink = '../' + post.link;
+        finalLink = '../' + post.link;
       }
 
       blogHTML += `
-        <a href="${finalLink}" class="blog-card">
-          <div class="blog-meta">
-            <span class="material-icons" style="font-size: 14px;">calendar_today</span> ${post.date}
-            <span>•</span>
-            <span class="material-icons" style="font-size: 14px;">tag</span> ${post.tag}
-          </div>
-          <h3>${post.title}</h3>
-          <p>${post.description}</p>
-          <span class="read-more-link">Read Article <span class="material-icons" style="font-size: 16px;">arrow_forward</span></span>
-        </a>
+      <a href="${finalLink}" class="blog-card">
+      <div class="blog-meta">
+      <span class="material-icons" style="font-size: 14px;">calendar_today</span> ${post.date}
+      <span>•</span>
+      <span class="material-icons" style="font-size: 14px;">tag</span> ${post.tag}
+      </div>
+      <h4>${post.title}</h4>
+      <p>${post.description}</p>
+      <span class="read-more-link">Read Article <span class="material-icons" style="font-size: 16px;">arrow_forward</span></span>
+      </a>
       `;
     });
 
@@ -78,140 +76,136 @@ async function loadBlogPosts() {
 
 /* --- LOAD LAST WINNER (INDEX PAGE) --- */
 function loadIndexWinner() {
-    const displayElement = document.getElementById('lastLemburSummary');
-    if (!displayElement) return; // Kalau gak ada elemennya (bukan di index), skip
+  const displayElement = document.getElementById('lastLemburSummary');
+  if (!displayElement) return; 
 
-    // Ambil dari LocalStorage browser
-    const lastWinner = localStorage.getItem('lastLemburWinner');
-    
-    if (lastWinner) {
-        displayElement.textContent = `Pemenang Terakhir: ${lastWinner}`;
-        // Styling dikit biar highlight
-        displayElement.style.color = '#fff';
-        displayElement.style.textShadow = '0 0 5px rgba(255,255,255,0.8)';
-    } else {
-        displayElement.textContent = "Belum ada korban lembur";
-    }
+  const lastWinner = localStorage.getItem('lastLemburWinner');
+
+  if (lastWinner) {
+    displayElement.textContent = `Pemenang Terakhir: ${lastWinner}`;
+    displayElement.style.color = '#fff';
+    displayElement.style.textShadow = '0 0 5px rgba(255,255,255,0.8)';
+  } else {
+    displayElement.textContent = "Belum ada korban lembur";
+  }
 }
 
 /* --- SPIN WHEEL LOGIC (SPIN PAGE) --- */
 function initSpinWheel() {
-    const canvas = document.getElementById('wheelCanvas');
-    if (!canvas) return; // Only run if canvas exists (on spin page)
+  const canvas = document.getElementById('wheelCanvas');
+  if (!canvas) return; 
 
-    const ctx = canvas.getContext('2d');
-    const spinBtn = document.getElementById('spinBtn');
-    const namesInput = document.getElementById('namesInput');
-    let names = [];
-    let currentAngle = 0;
-    let isSpinning = false;
+  const ctx = canvas.getContext('2d');
+  const spinBtn = document.getElementById('spinBtn');
+  const namesInput = document.getElementById('namesInput');
+  let names = [];
+  let currentAngle = 0;
+  let isSpinning = false;
+
+  const colors = ['#f44336', '#9c27b0', '#3f51b5', '#03a9f4', '#009688', '#8bc34a', '#ffeb3b', '#ff9800', '#795548'];
+
+  function getNames() {
+    let rawNames = namesInput.value.split('\n').filter(n => n.trim() !== '');
+    if (rawNames.length > 9) {
+      rawNames = rawNames.slice(0, 9);
+    }
+    return rawNames;
+  }
+
+  function drawWheel() {
+    names = getNames();
+    if (names.length === 0) return;
+    const arc = 2 * Math.PI / names.length;
+    const radius = canvas.width / 2;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    names.forEach((name, i) => {
+      const angle = i * arc;
+      ctx.beginPath();
+      ctx.fillStyle = colors[i % colors.length];
+      ctx.moveTo(radius, radius);
+      ctx.arc(radius, radius, radius, angle, angle + arc);
+      ctx.lineTo(radius, radius);
+      ctx.fill();
+
+      ctx.strokeStyle = "rgba(255,255,255,0.2)";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.save();
+      ctx.translate(radius, radius);
+      ctx.rotate(angle + arc / 2);
+      ctx.textAlign = "right";
+      ctx.fillStyle = "#fff";
+      ctx.font = "bold 24px Poppins";
+      ctx.shadowColor = "rgba(0,0,0,0.8)";
+      ctx.shadowBlur = 4;
+      ctx.fillText(name, radius - 30, 10);
+      ctx.restore();
+    });
+  }
+
+  function spin() {
+    if (isSpinning) return;
+    names = getNames();
+    if (names.length < 2) {
+      alert("Minimal 2 orang dong ges!");
+      return;
+    }
+
+    isSpinning = true;
+    spinBtn.disabled = true;
+    spinBtn.innerText = "LAGI MUTER...";
+
+    // Durasi putaran random antara 7 sampai 10 detik (7000ms - 10000ms)
+    const spinDuration = Math.floor(Math.random() * 3000) + 7000;
     
-    const colors = ['#f44336', '#9c27b0', '#3f51b5', '#03a9f4', '#009688', '#8bc34a', '#ffeb3b', '#ff9800', '#795548'];
+    // Putaran random (minimal 10 putaran + sudut acak biar hasil bener-bener random)
+    const extraSpins = Math.floor(Math.random() * 5) + 10; 
+    const randomSpin = Math.floor(Math.random() * 360) + (360 * extraSpins);
+    currentAngle += randomSpin;
 
-    function getNames() {
-        let rawNames = namesInput.value.split('\n').filter(n => n.trim() !== '');
-        if (rawNames.length > 9) {
-            rawNames = rawNames.slice(0, 9);
-        }
-        return rawNames;
-    }
+    // Override transition CSS biar sinkron sama durasi JS
+    canvas.style.transition = `transform ${spinDuration}ms cubic-bezier(0.25, 0.1, 0.25, 1)`;
+    canvas.style.transform = `rotate(-${currentAngle}deg)`;
 
-    function drawWheel() {
-        names = getNames();
-        if (names.length === 0) return;
-        const arc = 2 * Math.PI / names.length;
-        const radius = canvas.width / 2;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        names.forEach((name, i) => {
-            const angle = i * arc;
-            ctx.beginPath();
-            ctx.fillStyle = colors[i % colors.length];
-            ctx.moveTo(radius, radius);
-            ctx.arc(radius, radius, radius, angle, angle + arc);
-            ctx.lineTo(radius, radius);
-            ctx.fill();
-            
-            // Border antar slice
-            ctx.strokeStyle = "rgba(255,255,255,0.2)";
-            ctx.lineWidth = 2;
-            ctx.stroke();
+    setTimeout(() => {
+      isSpinning = false;
+      spinBtn.disabled = false;
+      spinBtn.innerText = "PUTAR GES! 🎲";
 
-            ctx.save();
-            ctx.translate(radius, radius);
-            ctx.rotate(angle + arc / 2);
-            ctx.textAlign = "right";
-            ctx.fillStyle = "#fff";
-            ctx.font = "bold 24px Poppins";
-            ctx.shadowColor="rgba(0,0,0,0.8)";
-            ctx.shadowBlur=4;
-            ctx.fillText(name, radius - 30, 10);
-            ctx.restore();
-        });
-    }
+      const degPerSlice = 360 / names.length;
 
-    function spin() {
-        if (isSpinning) return;
-        names = getNames();
-        if (names.length < 2) {
-            alert("Minimal 2 orang dong ges!");
-            return;
-        }
+      const targetRotation = (270 + currentAngle) % 360;
 
-        isSpinning = true;
-        spinBtn.disabled = true;
-        spinBtn.innerText = "LAGI MUTER...";
+      let index = Math.floor(targetRotation / degPerSlice);
+      index = index % names.length;
 
-        // Putaran Random
-        const randomSpin = Math.floor(Math.random() * 360) + (360 * 5); 
-        currentAngle += randomSpin; 
+      const yanglembur = names[index];
 
-        // Putar Canvas (Negative = Counter Clockwise)
-        canvas.style.transform = `rotate(-${currentAngle}deg)`;
+      localStorage.setItem('lastLemburWinner', yanglembur);
 
-        setTimeout(() => {
-            isSpinning = false;
-            spinBtn.disabled = false;
-            spinBtn.innerText = "PUTAR GES! 🎲";
-            
-            const degPerSlice = 360 / names.length;
-            
-            // Logic Pointer Fix (Counter Clockwise Rotation vs Static Pointer at Top)
-            const targetRotation = (270 + currentAngle) % 360;
-            
-            // Hitung Index
-            let index = Math.floor(targetRotation / degPerSlice);
-            index = index % names.length;
-            
-            const yanglembur = names[index];
-            
-            // --- SAVE WINNER TO LOCAL STORAGE ---
-            localStorage.setItem('lastLemburWinner', yanglembur);
-            
-            alert(`Mampus!! Si ${yanglembur} yang lembur! Awokawokaowkaowk`);
+      alert(`Mampus!! Si ${yanglembur} yang lembur! Awokawokaowkaowk`);
 
-        }, 5000); 
-    }
+    }, spinDuration);
+  }
 
-    // Init Draw
-    drawWheel();
-    
-    // Listeners
-    namesInput.addEventListener('input', drawWheel);
-    spinBtn.addEventListener('click', spin);
+  drawWheel();
+
+  namesInput.addEventListener('input', drawWheel);
+  spinBtn.addEventListener('click', spin);
 }
 
 /* --- GLOBAL INIT --- */
 document.addEventListener('DOMContentLoaded', () => {
-  type(); 
-  loadBlogPosts(); 
-  loadIndexWinner(); // Load winner status on index
-  initSpinWheel(); // Try initializing spin wheel
-  
-  // --- PWA SERVICE WORKER REGISTRATION ---
+  type();
+  loadBlogPosts();
+  loadIndexWinner(); 
+  initSpinWheel(); 
+
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js')
-      .then((reg) => console.log('Service Worker Registered!', reg))
-      .catch((err) => console.log('Service Worker Gagal!', err));
+    .then((reg) => console.log('Service Worker Registered!', reg))
+    .catch((err) => console.log('Service Worker Gagal!', err));
   }
 });
