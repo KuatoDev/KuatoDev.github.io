@@ -1,28 +1,30 @@
-/* --- TYPING EFFECT --- */
-const typingText = document.querySelector('.typing');
-const text = 'Vern Kuato';
-let index = 0;
+/* --- TYPING EFFECT (Index only) --- */
+function initTyping() {
+  const typingText = document.querySelector('.typing');
+  if (!typingText) return;
 
-function type() {
-  if (!typingText) return; 
-  if (index < text.length) {
-    typingText.textContent += text.charAt(index);
-    index++;
-    setTimeout(type, 100);
-  } else {
-    setTimeout(erase, 2000);
-  }
-}
+  const text = 'Vern Kuato';
+  let index = 0;
 
-function erase() {
-  if (!typingText) return; 
-  if (index > 0) {
-    typingText.textContent = text.substring(0, index - 1);
-    index--;
-    setTimeout(erase, 50);
-  } else {
-    setTimeout(type, 500);
+  function type() {
+    if (index < text.length) {
+      typingText.textContent += text.charAt(index++);
+      setTimeout(type, 100);
+    } else {
+      setTimeout(erase, 2000);
+    }
   }
+
+  function erase() {
+    if (index > 0) {
+      typingText.textContent = text.substring(0, --index);
+      setTimeout(erase, 50);
+    } else {
+      setTimeout(type, 500);
+    }
+  }
+
+  type();
 }
 
 /* --- DYNAMIC BLOG LOADING --- */
@@ -31,69 +33,56 @@ async function loadBlogPosts() {
   if (!blogContainer) return;
 
   const isInsideBlogFolder = window.location.pathname.includes('/blog/');
-  const basePath = isInsideBlogFolder ? '../': '';
+  const basePath = isInsideBlogFolder ? '../' : '';
   const jsonPath = basePath + 'blog/posts.json';
 
   try {
     const response = await fetch(jsonPath);
-    if (!response.ok) throw new Error("Gagal load data");
+    if (!response.ok) throw new Error('Gagal load data');
 
     let posts = await response.json();
+    if (blogContainer.classList.contains('home-limit')) posts = posts.slice(0, 1);
 
-    if (blogContainer.classList.contains('home-limit')) {
-      posts = posts.slice(0, 1);
-    }
-
-    let blogHTML = '';
-
-    posts.forEach(post => {
-      let finalLink = post.link;
-      if (isInsideBlogFolder) {
-        finalLink = '../' + post.link;
-      }
-
-      blogHTML += `
-      <a href="${finalLink}" class="blog-card">
-      <div class="blog-meta">
-      <span class="material-icons" style="font-size: 14px;">calendar_today</span> ${post.date}
-      <span>•</span>
-      <span class="material-icons" style="font-size: 14px;">tag</span> ${post.tag}
-      </div>
-      <h4>${post.title}</h4>
-      <p>${post.description}</p>
-      <span class="read-more-link">Read Article <span class="material-icons" style="font-size: 16px;">arrow_forward</span></span>
-      </a>
-      `;
-    });
-
-    blogContainer.innerHTML = blogHTML;
+    blogContainer.innerHTML = posts.map(post => {
+      const finalLink = isInsideBlogFolder ? '../' + post.link : post.link;
+      return `
+        <a href="${finalLink}" class="blog-card">
+          <div class="blog-meta">
+            <span class="material-icons" style="font-size:14px;" aria-hidden="true">calendar_today</span> ${post.date}
+            <span aria-hidden="true">•</span>
+            <span class="material-icons" style="font-size:14px;" aria-hidden="true">tag</span> ${post.tag}
+          </div>
+          <h4>${post.title}</h4>
+          <p>${post.description}</p>
+          <span class="read-more-link">Read Article <span class="material-icons" style="font-size:16px;" aria-hidden="true">arrow_forward</span></span>
+        </a>`;
+    }).join('');
 
   } catch (error) {
-    console.error("Error loading blog:", error);
-    blogContainer.innerHTML = '<p style="color:var(--text-muted); text-align:center;">Gagal memuat artikel.</p>';
+    console.error('Error loading blog:', error);
+    blogContainer.innerHTML = '<p style="color:var(--text-muted);text-align:center;">Gagal memuat artikel.</p>';
   }
 }
 
-/* --- LOAD LAST WINNER (INDEX PAGE) --- */
+/* --- LOAD LAST WINNER (Index only) --- */
 function loadIndexWinner() {
   const displayElement = document.getElementById('lastLemburSummary');
-  if (!displayElement) return; 
+  if (!displayElement) return;
 
   const lastWinner = localStorage.getItem('lastLemburWinner');
-
   if (lastWinner) {
     displayElement.textContent = `Pemenang Terakhir: ${lastWinner}`;
-    displayElement.style.color = '#fff';
-    displayElement.style.textShadow = '0 0 5px rgba(255,255,255,0.8)';
+    displayElement.style.color = 'var(--primary-accent)';
+    displayElement.style.textShadow = '0 0 8px rgba(255,145,0,0.6)';
   } else {
-    displayElement.textContent = "Belum ada korban lembur";
+    displayElement.textContent = 'Belum ada korban lembur';
   }
 }
 
-/* --- SPIN WHEEL LOGIC (SPIN PAGE) --- */
+/* --- SPIN WHEEL (Spin page only) --- */
 function initSpinWheel() {
   const canvas = document.getElementById('wheelCanvas');
-  if (!canvas) return; 
+  if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
   const spinBtn = document.getElementById('spinBtn');
@@ -102,20 +91,16 @@ function initSpinWheel() {
   let currentAngle = 0;
   let isSpinning = false;
 
-  const colors = ['#f44336', '#9c27b0', '#3f51b5', '#03a9f4', '#009688', '#8bc34a', '#ffeb3b', '#ff9800', '#795548'];
+  const colors = ['#f44336','#9c27b0','#3f51b5','#03a9f4','#009688','#8bc34a','#ffeb3b','#ff9800','#795548'];
 
   function getNames() {
-    let rawNames = namesInput.value.split('\n').filter(n => n.trim() !== '');
-    if (rawNames.length > 9) {
-      rawNames = rawNames.slice(0, 9);
-    }
-    return rawNames;
+    return namesInput.value.split('\n').filter(n => n.trim() !== '').slice(0, 9);
   }
 
   function drawWheel() {
     names = getNames();
     if (names.length === 0) return;
-    const arc = 2 * Math.PI / names.length;
+    const arc = (2 * Math.PI) / names.length;
     const radius = canvas.width / 2;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -127,18 +112,17 @@ function initSpinWheel() {
       ctx.arc(radius, radius, radius, angle, angle + arc);
       ctx.lineTo(radius, radius);
       ctx.fill();
-
-      ctx.strokeStyle = "rgba(255,255,255,0.2)";
+      ctx.strokeStyle = 'rgba(255,255,255,0.2)';
       ctx.lineWidth = 2;
       ctx.stroke();
 
       ctx.save();
       ctx.translate(radius, radius);
       ctx.rotate(angle + arc / 2);
-      ctx.textAlign = "right";
-      ctx.fillStyle = "#fff";
-      ctx.font = "bold 24px Poppins";
-      ctx.shadowColor = "rgba(0,0,0,0.8)";
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 24px Poppins';
+      ctx.shadowColor = 'rgba(0,0,0,0.8)';
       ctx.shadowBlur = 4;
       ctx.fillText(name, radius - 30, 10);
       ctx.restore();
@@ -148,64 +132,50 @@ function initSpinWheel() {
   function spin() {
     if (isSpinning) return;
     names = getNames();
-    if (names.length < 2) {
-      alert("Minimal 2 orang dong ges!");
-      return;
-    }
+    if (names.length < 2) { alert('Minimal 2 orang dong ges!'); return; }
 
     isSpinning = true;
     spinBtn.disabled = true;
-    spinBtn.innerText = "LAGI MUTER...";
+    spinBtn.innerText = 'LAGI MUTER...';
 
-    // Durasi putaran random antara 7 sampai 10 detik (7000ms - 10000ms)
     const spinDuration = Math.floor(Math.random() * 3000) + 7000;
-    
-    // Putaran random (minimal 10 putaran + sudut acak biar hasil bener-bener random)
-    const extraSpins = Math.floor(Math.random() * 5) + 10; 
+    const extraSpins = Math.floor(Math.random() * 5) + 10;
     const randomSpin = Math.floor(Math.random() * 360) + (360 * extraSpins);
     currentAngle += randomSpin;
 
-    // Override transition CSS biar sinkron sama durasi JS
     canvas.style.transition = `transform ${spinDuration}ms cubic-bezier(0.25, 0.1, 0.25, 1)`;
     canvas.style.transform = `rotate(-${currentAngle}deg)`;
 
     setTimeout(() => {
       isSpinning = false;
       spinBtn.disabled = false;
-      spinBtn.innerText = "PUTAR GES! 🎲";
+      spinBtn.innerText = 'PUTAR GES! 🎲';
 
       const degPerSlice = 360 / names.length;
-
       const targetRotation = (270 + currentAngle) % 360;
-
-      let index = Math.floor(targetRotation / degPerSlice);
-      index = index % names.length;
-
+      const index = Math.floor(targetRotation / degPerSlice) % names.length;
       const yanglembur = names[index];
 
       localStorage.setItem('lastLemburWinner', yanglembur);
-
       alert(`Mampus!! Si ${yanglembur} yang lembur! Awokawokaowkaowk`);
-
     }, spinDuration);
   }
 
   drawWheel();
-
   namesInput.addEventListener('input', drawWheel);
   spinBtn.addEventListener('click', spin);
 }
 
-/* --- GLOBAL INIT --- */
+/* --- INIT --- */
 document.addEventListener('DOMContentLoaded', () => {
-  type();
+  initTyping();
   loadBlogPosts();
-  loadIndexWinner(); 
-  initSpinWheel(); 
+  loadIndexWinner();
+  initSpinWheel();
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js')
-    .then((reg) => console.log('Service Worker Registered!', reg))
-    .catch((err) => console.log('Service Worker Gagal!', err));
+      .then(reg => console.log('SW Registered:', reg))
+      .catch(err => console.error('SW Error:', err));
   }
 });

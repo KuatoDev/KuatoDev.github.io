@@ -1,48 +1,45 @@
-const CACHE_NAME = 'vern-pwa-v1';
+const CACHE_NAME = 'vern-pwa-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './blog.html',
   './profile.html',
   './spin.html',
+  './wincross.html',
+  './wearlevelinsight.html',
   './style.css',
   './script.js',
-  './posts.json',
+  './manifest.json',
+  './blog/posts.json',
   './assets/logo.svg',
-  './assets/logo.ico'
+  './assets/logo.ico',
+  './assets/profile.webp',
+  './assets/wearlevelinsight.webp',
+  './assets/woahelper.webp',
+  './assets/oneuiicon.jpg'
 ];
 
-// Install Service Worker & Cache Assets
-self.addEventListener('install', (event) => {
+self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log('[Service Worker] Caching assets');
+    caches.open(CACHE_NAME).then(cache => {
+      console.log('[SW] Caching assets');
       return cache.addAll(ASSETS_TO_CACHE);
     })
   );
+  self.skipWaiting();
 });
 
-// Activate Service Worker & Clean Old Caches
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then((keyList) => {
-      return Promise.all(
-        keyList.map((key) => {
-          if (key !== CACHE_NAME) {
-            console.log('[Service Worker] Removing old cache', key);
-            return caches.delete(key);
-          }
-        })
-      );
-    })
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))
+    )
   );
+  self.clients.claim();
 });
 
-// Fetch Strategy (Cache First, falling back to Network)
-self.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
-    })
+    caches.match(event.request).then(response => response || fetch(event.request))
   );
 });

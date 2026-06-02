@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="description" content="Vern Kuato - Android Developer & IT Specialist. Building kernels, tools, and useful Android apps.">
+  <meta name="theme-color" content="#0a1628">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#10002b">
-  
-  <title>Vern Kuato</title>
-  
-  <link rel="stylesheet" href="style.css">
+  <title>Vern Kuato | Android Developer</title>
   <link rel="icon" href="assets/logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-  <div class="background-wrapper">
+
+  <div class="background-wrapper" aria-hidden="true">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
   </div>
-  
+
   <header>
     <nav>
       <div class="logo">
-        <a href="index.html" style="display: flex; align-items: center;">
+        <a href="index.html" aria-label="Vern Kuato Home">
           <img src="assets/logo.svg" alt="Vern Kuato Logo" width="40" height="40">
         </a>
       </div>
@@ -38,93 +38,89 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>Hi, I am <span class="typing"></span><span class="cursor">|</span></h1>
-    <p>
-      I am a human from planet earth 🌎 
-    </p>
+  <section class="hero" aria-label="Introduction">
+    <h1>Hi, I am <span class="typing"></span><span class="cursor" aria-hidden="true">|</span></h1>
+    <p>I am a human from planet earth 🌎</p>
   </section>
 
-  <section id="blog" class="blog">
+  <section id="blog" class="blog" aria-label="Latest Article">
     <h2>Latest Article</h2>
     <div class="blog-list home-limit">
-       <p class="loading-text" style="color: var(--text-muted); text-align: center; width: 100%;">Loading articles...</p>
+      <p style="color: var(--text-muted); text-align: center; width: 100%;">Loading articles...</p>
     </div>
-    <div style="margin-top: 30px;">
-      <a href="blog.html" class="project-link">View All Posts</a>
+    <div>
+      <a href="blog.html" class="view-all-btn">View All Posts</a>
     </div>
   </section>
 
-  <section id="projects" class="projects">
+  <section id="projects" class="projects" aria-label="My Projects">
     <h2>My Projects</h2>
     <div class="project-list">
-      
+
       <div class="project-card">
-        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #ff9100, #ff3d00); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--glass-border);">
-           <span class="material-icons" style="font-size: 50px; color: white; opacity: 0.8;">casino</span>
+        <div style="width: 100%; height: clamp(180px, 45vw, 260px); background: linear-gradient(135deg, #ff9100, #ff3d00); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--glass-border);">
+          <span class="material-icons" style="font-size: 50px; color: white; opacity: 0.8;" aria-hidden="true">casino</span>
         </div>
         <h3>Spin Lembur</h3>
         <div class="project-overlay">
-          <p id="lastLemburSummary" style="font-weight: bold;">Pemenang Terakhir: -</p>
+          <p id="lastLemburSummary" style="font-weight: bold;">Belum ada korban lembur</p>
           <a href="spin.html" class="project-link">BUKA SPIN</a>
         </div>
       </div>
 
       <div class="project-card">
-        <img src="assets/wearlevelinsight.webp" alt="Wear Level Insight App" loading="lazy" width="350" height="200">
+        <img src="assets/wearlevelinsight.webp" alt="Wear Level Insight App Screenshot" loading="lazy" width="350" height="200">
         <h3>Wear Level Insight</h3>
         <div class="project-overlay">
           <p>Wear Level Insight for android devices to check storage health</p>
-          <a href="wearlevelinsight.html" class="project-link" target="_blank" rel="noopener">DETAILS</a>
+          <a href="wearlevelinsight.html" class="project-link">DETAILS</a>
         </div>
       </div>
-      
+
       <div class="project-card">
-        <img src="assets/oneuiicon.jpg" alt="OneUI Icon Pack" loading="lazy" width="350" height="200">
+        <img src="assets/oneuiicon.jpg" alt="OneUI Icon Pack Preview" loading="lazy" width="350" height="200">
         <h3>OneUI Icons</h3>
         <div class="project-overlay">
           <p>Beautiful OneUI Icon pack for Android 8+.</p>
-          <a href="https://www.pling.com/p/1610012/" class="project-link" target="_blank" rel="noopener">DOWNLOAD</a>
+          <a href="https://www.pling.com/p/1610012/" class="project-link" target="_blank" rel="noopener noreferrer">DOWNLOAD</a>
         </div>
       </div>
-      
+
       <div class="project-card">
-        <img src="assets/woahelper.webp" alt="WIN Cross Tool" loading="lazy" width="350" height="200">
+        <img src="assets/woahelper.webp" alt="WIN Cross Tool Screenshot" loading="lazy" width="350" height="200">
         <h3>WIN Cross</h3>
         <div class="project-overlay">
           <p>Tool to manage dualboot Windows and Android OS on Poco X3 Pro.</p>
-          <a href="wincross.html" class="project-link" target="_blank" rel="noopener">DETAILS</a>
+          <a href="wincross.html" class="project-link">DETAILS</a>
         </div>
       </div>
 
     </div>
   </section>
 
-  <section id="profile" class="about-preview">
+  <section id="profile" class="about-preview" aria-label="About Me">
     <div class="about-card">
       <h2>Who am I?</h2>
       <div class="about-info">
         <h3>I am Vern Kuato</h3>
         <span class="role">Android Developer & Fleet Monitoring Specialist</span>
-        <p>
-          Passionate about tweaking Android systems, building kernels, and creating useful tools like WIN Cross. I love turning complex problems into simple code solutions.
-        </p>
+        <p>Passionate about tweaking Android systems, building kernels, and creating useful tools like WIN Cross. I love turning complex problems into simple code solutions.</p>
         <div>
           <a href="profile.html" class="project-link">
-            View Full Profile <span class="material-icons" style="font-size: 16px; vertical-align: middle; margin-left: 5px;">arrow_forward</span>
+            View Full Profile <span class="material-icons" style="font-size: 16px; vertical-align: middle; margin-left: 5px;" aria-hidden="true">arrow_forward</span>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="contact">
+  <section id="contact" class="contact" aria-label="Contact">
     <h2>Contact Me</h2>
     <p>Email: <a href="mailto:vernkuato@gmail.com">vernkuato@gmail.com</a></p>
-    <p>Follow me on <a href="https://instagram.com/kuatodev" target="_blank" rel="noopener">Instagram</a> & <a href="https://github.com/KuatoDev" target="_blank" rel="noopener">GitHub</a></p>
-    <p>Subscribe my <a href="https://t.me/vernkuato" target="_blank" rel="noopener">Telegram Channel</a></p>
+    <p>Follow me on <a href="https://instagram.com/kuatodev" target="_blank" rel="noopener noreferrer">Instagram</a> & <a href="https://github.com/KuatoDev" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+    <p>Subscribe my <a href="https://t.me/vernkuato" target="_blank" rel="noopener noreferrer">Telegram Channel</a></p>
   </section>
 
-  <script src="script.js"></script> 
+  <script src="script.js"></script>
 </body>
 </html>
