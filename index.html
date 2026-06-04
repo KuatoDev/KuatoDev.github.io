@@ -30,8 +30,8 @@
         </a>
       </div>
       <ul class="nav-links">
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="#blog">Article</a></li>
+        <li><a href="#projects">Portofolio</a></li>
         <li><a href="#profile">Profile</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -53,8 +53,8 @@
     </div>
   </section>
 
-  <section id="projects" class="projects" aria-label="My Projects">
-    <h2>My Projects</h2>
+  <section id="projects" class="projects" aria-label="Portofolio">
+    <h2>Portofolio</h2>
     <div class="project-list">
 
       <div class="project-card">
@@ -114,13 +114,59 @@
     </div>
   </section>
 
-  <section id="contact" class="contact" aria-label="Contact">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:vernkuato@gmail.com">vernkuato@gmail.com</a></p>
-    <p>Follow me on <a href="https://instagram.com/kuatodev" target="_blank" rel="noopener noreferrer">Instagram</a> & <a href="https://github.com/KuatoDev" target="_blank" rel="noopener noreferrer">GitHub</a></p>
-    <p>Subscribe my <a href="https://t.me/vernkuato" target="_blank" rel="noopener noreferrer">Telegram Channel</a></p>
-  </section>
+  <footer class="site-footer" id="contact">
+    <div class="footer-glow" aria-hidden="true"></div>
+    <div class="footer-inner">
+
+      <div class="footer-col footer-brand">
+        <img src="assets/logo.svg" alt="Vern Kuato Logo" width="48" height="48">
+        <div>
+          <h3>Vern Kuato</h3>
+          <p>Android Developer &amp; Fleet Monitoring Specialist</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div class="footer-col footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#blog">Article</a></li>
+            <li><a href="#projects">Portofolio</a></li>
+            <li><a href="profile.html">Full Profile</a></li>
+            <li><a href="spin.html">Spin Lembur</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-contact">
+          <h4>Get in Touch</h4>
+          <ul>
+            <li>
+              <span class="material-icons" aria-hidden="true">email</span>
+              <a href="mailto:vernkuato@gmail.com">vernkuato@gmail.com</a>
+            </li>
+            <li>
+              <span class="material-icons" aria-hidden="true">send</span>
+              <a href="https://t.me/vernkuato" target="_blank" rel="noopener noreferrer">Telegram Channel</a>
+            </li>
+            <li>
+              <span class="material-icons" aria-hidden="true">code</span>
+              <a href="https://github.com/KuatoDev" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </li>
+            <li>
+              <span class="material-icons" aria-hidden="true">photo_camera</span>
+              <a href="https://instagram.com/kuatodev" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-copyright">
+      <p>© <span id="footerYear"></span> Vern Kuato. Built with ☕ on a Poco X3 Pro.</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
+  <script>document.getElementById('footerYear').textContent = new Date().getFullYear();</script>
 </body>
 </html>

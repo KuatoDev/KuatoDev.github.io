@@ -54,18 +54,20 @@ html {
   scroll-padding-top: clamp(60px, 8vh, 120px);
   height: 100%;
   width: 100%;
+  background-color: var(--bg-core);
 }
 
 body {
-  background: transparent;
+  background-color: var(--bg-core);
   color: var(--text-main);
   text-align: center;
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
   z-index: 1;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, background-color 0.5s ease;
   min-height: 100vh;
+  overscroll-behavior-y: none;
 }
 
 /* --- BACKGROUND --- */
@@ -546,35 +548,164 @@ nav {
   line-height: 1.6;
 }
 
-/* --- CONTACT --- */
-.contact {
-  width: 90%;
-  max-width: 800px;
-  margin: var(--card-margin) auto clamp(60px, 8vh, 80px);
-  border-radius: clamp(16px, 3vw, 20px);
-  padding: clamp(30px, 5vw, 50px);
-  color: var(--text-main);
+/* --- FOOTER --- */
+.site-footer {
+  position: relative;
+  width: 100%;
+  margin-top: var(--card-margin);
+  overflow: hidden;
+  border-top: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.footer-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-accent), transparent);
+}
+
+.footer-inner {
   display: flex;
   flex-direction: column;
-  gap: clamp(15px, 2vh, 20px);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vh, 60px) clamp(20px, 5vw, 40px) clamp(30px, 4vh, 40px);
+  gap: clamp(30px, 5vh, 40px);
 }
 
-.contact:hover {
-  transform: translateY(-3px);
-  border-color: var(--primary-accent);
+/* Desktop: brand + bottom-row berdampingan */
+@media screen and (min-width: 641px) {
+  .footer-inner {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: clamp(30px, 5vw, 60px);
+  }
+
+  .footer-brand { flex: 1; min-width: 180px; }
+
+  .footer-bottom-row {
+    display: flex;
+    flex: 2;
+    gap: clamp(30px, 5vw, 60px);
+    justify-content: flex-end;
+  }
 }
 
-.contact p { font-size: clamp(0.95em, 2.5vw, 1.05em); }
+/* Mobile: brand full row, lalu nav + contact 2 kolom */
+@media screen and (max-width: 640px) {
+  .footer-brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding-bottom: clamp(20px, 3vh, 30px);
+    border-bottom: 1px solid var(--glass-border);
+  }
 
-.contact a {
+  .footer-bottom-row {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(20px, 5vw, 40px);
+    width: 100%;
+  }
+
+  .footer-bottom-row .footer-col {
+    flex: 1;
+  }
+}
+
+.footer-col { text-align: left; }
+
+.footer-brand img {
+  width: clamp(36px, 5vw, 48px);
+  height: auto;
+  flex-shrink: 0;
+}
+
+.footer-brand h3 {
+  font-size: clamp(1em, 3vw, 1.3em);
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.footer-brand p {
+  font-size: clamp(0.72em, 1.8vw, 0.85em);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  font-size: clamp(0.72em, 1.8vw, 0.82em);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   color: var(--primary-accent);
-  text-decoration: none;
-  font-weight: bold;
-  transition: opacity 0.3s ease;
+  margin-bottom: clamp(12px, 2vh, 18px);
 }
 
-.contact a:hover { opacity: 0.8; }
+.footer-links ul,
+.footer-contact ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.5vh, 12px);
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: clamp(0.82em, 2vw, 0.95em);
+  transition: color 0.2s ease, padding-left 0.2s ease;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: var(--primary-accent);
+  padding-left: 6px;
+}
+
+.footer-contact li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-contact .material-icons {
+  font-size: 15px;
+  color: var(--primary-accent);
+  flex-shrink: 0;
+}
+
+.footer-contact a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: clamp(0.82em, 2vw, 0.95em);
+  transition: color 0.2s ease;
+}
+
+.footer-contact a:hover { color: var(--primary-accent); }
+
+.footer-copyright {
+  border-top: 1px solid var(--glass-border);
+  padding: clamp(15px, 2.5vh, 20px) clamp(20px, 5vw, 40px);
+  text-align: center;
+}
+
+.footer-copyright p {
+  font-size: clamp(0.72em, 1.8vw, 0.82em);
+  color: var(--text-muted);
+}
 
 /* --- BACK BUTTON & TOOLBAR --- */
 .toolbar-area {

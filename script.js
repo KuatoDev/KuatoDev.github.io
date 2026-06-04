@@ -157,7 +157,20 @@ function initSpinWheel() {
       const yanglembur = names[index];
 
       localStorage.setItem('lastLemburWinner', yanglembur);
-      alert(`Mampus!! Si ${yanglembur} yang lembur! Awokawokaowkaowk`);
+
+      const customMessages = {
+        'ARIS':    `Ciyeee si Aris mau ngumpulin modal pulang kampung... 😏`,
+        'ARY':     `Semangat!! Lemburan lebih gede daripada di Bluebird Riiiiiiii 🤪`,
+        'DWI NUR': `Kasian si Dwi jadi korban lembur.. 🥺`,
+        'SHOHIFDA':`Ehemmmm.... Mau nyari modal kawin lagi ya Sho?? 🤪`,
+        'KUATO':   `Getol amat cari duit? Mau beli PCX Baru ya wat?🤣`,
+        'ZULFIKAR':`Manusia yang gabisa sakit! Sikat lemburannya Zul!!!`,
+        'SURYAMIN':`BOSS YAMIN LEMBUUUUURRRRRRRRRRR`,
+      };
+
+      const key = yanglembur.trim().toUpperCase();
+      const message = customMessages[key] ?? `Mampus!! Si ${yanglembur} yang lembur! Awokawokaowkaowk`;
+      alert(message);
     }, spinDuration);
   }
 
