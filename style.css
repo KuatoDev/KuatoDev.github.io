@@ -1070,3 +1070,138 @@ nav {
   .hero p { font-size: clamp(10px, 2.2vw, 12px); }
   .nav-links a { padding: 4px 8px; font-size: 10px; }
 }
+
+/* --- GITHUB ACTIVITY CARD --- */
+.github-card {
+  text-align: left;
+}
+
+.github-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: clamp(16px, 3vh, 24px);
+  flex-wrap: wrap;
+}
+
+.github-card-header .material-icons {
+  color: var(--primary-accent);
+  font-size: clamp(20px, 3vw, 24px);
+}
+
+.github-card-header h2 {
+  font-size: clamp(1.1em, 3vw, 1.4em);
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+  flex: 1;
+}
+
+.github-profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: clamp(0.75em, 1.8vw, 0.85em);
+  color: var(--primary-accent);
+  text-decoration: none;
+  border: 1px solid var(--primary-accent);
+  padding: 3px 10px;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.github-profile-link:hover {
+  background: var(--primary-accent);
+  color: white;
+}
+
+.github-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.5vh, 12px);
+}
+
+.github-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 0.9em;
+  padding: 10px 0;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.github-event {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(10px, 2vw, 14px);
+  padding: clamp(10px, 2vw, 14px);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--glass-border);
+  transition: border-color 0.2s ease, background 0.2s ease;
+  text-decoration: none;
+}
+
+.github-event:hover {
+  border-color: var(--primary-accent);
+  background: rgba(255,145,0,0.06);
+}
+
+.github-event-icon {
+  width: clamp(28px, 4vw, 34px);
+  height: clamp(28px, 4vw, 34px);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.github-event-icon .material-icons {
+  font-size: clamp(14px, 2.5vw, 18px);
+}
+
+.icon-push    { background: rgba(33,150,243,0.15); color: #64b5f6; }
+.icon-star    { background: rgba(255,193,7,0.15);  color: #ffd54f; }
+.icon-fork    { background: rgba(156,39,176,0.15); color: #ce93d8; }
+.icon-pr      { background: rgba(76,175,80,0.15);  color: #81c784; }
+.icon-issue   { background: rgba(244,67,54,0.15);  color: #ef9a9a; }
+.icon-create  { background: rgba(0,188,212,0.15);  color: #80deea; }
+.icon-release { background: rgba(255,145,0,0.15);  color: #ffcc80; }
+.icon-default { background: rgba(158,158,158,0.15);color: #bdbdbd; }
+
+.github-event-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.github-event-action {
+  font-size: clamp(0.78em, 2vw, 0.88em);
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.github-event-repo {
+  font-size: clamp(0.85em, 2.2vw, 0.95em);
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.github-event-time {
+  font-size: clamp(0.7em, 1.6vw, 0.78em);
+  color: var(--text-muted);
+  margin-top: 3px;
+}

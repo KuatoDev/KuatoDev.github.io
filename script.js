@@ -79,7 +79,75 @@ function loadIndexWinner() {
   }
 }
 
-/* --- SPIN WHEEL (Spin page only) --- */
+/* --- GITHUB ACTIVITY --- */
+async function loadGithubActivity() {
+  const container = document.getElementById('githubActivity');
+  if (!container) return;
+
+  const GITHUB_USER = 'KuatoDev';
+  const EVENT_LIMIT = 7;
+
+  const eventConfig = {
+    PushEvent:                  { icon: 'upload',        cls: 'icon-push',    label: 'Pushed to' },
+    WatchEvent:                 { icon: 'star',          cls: 'icon-star',    label: 'Starred' },
+    ForkEvent:                  { icon: 'call_split',    cls: 'icon-fork',    label: 'Forked' },
+    PullRequestEvent:           { icon: 'merge',         cls: 'icon-pr',      label: 'Pull request on' },
+    IssuesEvent:                { icon: 'bug_report',    cls: 'icon-issue',   label: 'Issue on' },
+    CreateEvent:                { icon: 'add_circle',    cls: 'icon-create',  label: 'Created' },
+    ReleaseEvent:               { icon: 'new_releases',  cls: 'icon-release', label: 'Released on' },
+    DeleteEvent:                { icon: 'delete',        cls: 'icon-default', label: 'Deleted from' },
+    PublicEvent:                { icon: 'public',        cls: 'icon-create',  label: 'Made public' },
+    PullRequestReviewEvent:     { icon: 'rate_review',   cls: 'icon-pr',      label: 'Reviewed PR on' },
+    IssueCommentEvent:          { icon: 'comment',       cls: 'icon-issue',   label: 'Commented on' },
+    CommitCommentEvent:         { icon: 'comment',       cls: 'icon-push',    label: 'Commented on' },
+  };
+
+  function timeAgo(dateStr) {
+    const diff = Math.floor((Date.now() - new Date(dateStr)) / 1000);
+    if (diff < 60)    return `${diff}s ago`;
+    if (diff < 3600)  return `${Math.floor(diff / 60)}m ago`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+    return `${Math.floor(diff / 86400)}d ago`;
+  }
+
+  try {
+    const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/events/public?per_page=30`);
+    if (!res.ok) throw new Error('API error');
+
+    const events = await res.json();
+    const filtered = events
+      .filter(e => Object.keys(eventConfig).includes(e.type))
+      .slice(0, EVENT_LIMIT);
+
+    if (!filtered.length) {
+      container.innerHTML = '<p style="color:var(--text-muted);font-size:0.9em;">Tidak ada activity terbaru.</p>';
+      return;
+    }
+
+    container.innerHTML = filtered.map(e => {
+      const cfg = eventConfig[e.type] || { icon: 'code', cls: 'icon-default', label: 'Activity on' };
+      const repo = e.repo.name.replace(`${GITHUB_USER}/`, '');
+      const repoUrl = `https://github.com/${e.repo.name}`;
+      return `
+        <a href="${repoUrl}" target="_blank" rel="noopener noreferrer" class="github-event">
+          <div class="github-event-icon ${cfg.cls}">
+            <span class="material-icons" aria-hidden="true">${cfg.icon}</span>
+          </div>
+          <div class="github-event-body">
+            <div class="github-event-action">${cfg.label}</div>
+            <div class="github-event-repo">${repo}</div>
+            <div class="github-event-time">${timeAgo(e.created_at)}</div>
+          </div>
+        </a>`;
+    }).join('');
+
+  } catch (err) {
+    console.error('GitHub Activity error:', err);
+    container.innerHTML = '<p style="color:var(--text-muted);font-size:0.9em;padding:8px 0;">Gagal memuat GitHub activity.</p>';
+  }
+}
+
+
 function initSpinWheel() {
   const canvas = document.getElementById('wheelCanvas');
   if (!canvas) return;
@@ -184,6 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTyping();
   loadBlogPosts();
   loadIndexWinner();
+  loadGithubActivity();
   initSpinWheel();
 
   if ('serviceWorker' in navigator) {
