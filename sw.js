@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vern-pwa-v2';
+const CACHE_NAME = 'vern-pwa-v5';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -7,6 +7,10 @@ const ASSETS_TO_CACHE = [
   './spin.html',
   './wincross.html',
   './wearlevelinsight.html',
+  './blog/article-1.html',
+  './blog/article-2.html',
+  './blog/article-3.html',
+  './blog/article-4.html',
   './style.css',
   './script.js',
   './manifest.json',
@@ -16,13 +20,13 @@ const ASSETS_TO_CACHE = [
   './assets/profile.webp',
   './assets/wearlevelinsight.webp',
   './assets/woahelper.webp',
-  './assets/oneuiicon.jpg'
+  './assets/oneuiicon.jpg',
+  './assets/blogs/article4.jpg'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log('[SW] Caching assets');
       return cache.addAll(ASSETS_TO_CACHE);
     })
   );
@@ -39,7 +43,49 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+  const request = event.request;
+  const url = new URL(request.url);
+
+  // Only handle GET requests within same-origin
+  if (request.method !== 'GET' || url.origin !== self.location.origin) {
+    return;
+  }
+
+  // Network-first for HTML pages and posts.json to ensure fresh content
+  const isHtmlOrJson = request.mode === 'navigate' ||
+                       url.pathname.endsWith('.html') ||
+                       url.pathname.endsWith('/') ||
+                       url.pathname.endsWith('posts.json');
+
+  if (isHtmlOrJson) {
+    event.respondWith(
+      fetch(request)
+        .then(networkResponse => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(request, responseClone));
+          }
+          return networkResponse;
+        })
+        .catch(() => caches.match(request).then(cached => cached || caches.match('./index.html')))
+    );
+    return;
+  }
+
+  // Stale-While-Revalidate for static assets (CSS, JS, images)
   event.respondWith(
-    caches.match(event.request).then(response => response || fetch(event.request))
+    caches.match(request).then(cachedResponse => {
+      const fetchPromise = fetch(request)
+        .then(networkResponse => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(request, responseClone));
+          }
+          return networkResponse;
+        })
+        .catch(() => cachedResponse);
+
+      return cachedResponse || fetchPromise;
+    })
   );
 });

@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Vern Kuato - Android Developer & IT Specialist. Building kernels, tools, and useful Android apps.">
   <meta name="theme-color" content="#0a1628">
+  <link rel="canonical" href="https://vernkuato.zone.id/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vernkuato.zone.id/">
+  <meta property="og:title" content="Vern Kuato | Android Developer">
+  <meta property="og:description" content="Vern Kuato - Android Developer & IT Specialist. Building kernels, tools, and useful Android apps.">
+  <meta property="og:image" content="https://vernkuato.zone.id/assets/profile.webp">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://vernkuato.zone.id/">
+  <meta name="twitter:title" content="Vern Kuato | Android Developer">
+  <meta name="twitter:description" content="Vern Kuato - Android Developer & IT Specialist. Building kernels, tools, and useful Android apps.">
+  <meta name="twitter:image" content="https://vernkuato.zone.id/assets/profile.webp">
+
   <link rel="manifest" href="manifest.json">
   <title>Vern Kuato | Android Developer</title>
   <link rel="icon" href="assets/logo.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,8 +46,8 @@
         </a>
       </div>
       <ul class="nav-links">
-        <li><a href="#blog">Article</a></li>
-        <li><a href="#projects">Portofolio</a></li>
+        <li><a href="#blog">Articles</a></li>
+        <li><a href="#projects">Portfolio</a></li>
         <li><a href="#profile">Profile</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -39,12 +55,12 @@
   </header>
 
   <section class="hero" aria-label="Introduction">
-    <h1>Hi, I am <span class="typing"></span><span class="cursor" aria-hidden="true">|</span></h1>
+    <h1 aria-label="Hi, I am Vern Kuato">Hi, I am <span class="typing">Vern Kuato</span><span class="cursor" aria-hidden="true">|</span></h1>
     <p>I am a human from planet earth 🌎</p>
   </section>
 
-  <section id="blog" class="blog" aria-label="Latest Article">
-    <h2>Latest Article</h2>
+  <section id="blog" class="blog" aria-label="Latest Articles">
+    <h2>Latest Articles</h2>
     <div class="blog-list home-limit">
       <p style="color: var(--text-muted); text-align: center; width: 100%;">Loading articles...</p>
     </div>
@@ -53,8 +69,8 @@
     </div>
   </section>
 
-  <section id="projects" class="projects" aria-label="Portofolio">
-    <h2>Portofolio</h2>
+  <section id="projects" class="projects" aria-label="Portfolio">
+    <h2>Portfolio</h2>
     <div class="project-list">
 
       <div class="project-card">
@@ -63,8 +79,8 @@
         </div>
         <h3>Spin Lembur</h3>
         <div class="project-overlay">
-          <p id="lastLemburSummary" style="font-weight: bold;">Belum ada korban lembur</p>
-          <a href="spin.html" class="project-link">BUKA SPIN</a>
+          <p id="lastLemburSummary" style="font-weight: bold;">No overtime victim yet</p>
+          <a href="spin.html" class="project-link">OPEN SPIN</a>
         </div>
       </div>
 
@@ -72,7 +88,7 @@
         <img src="assets/wearlevelinsight.webp" alt="Wear Level Insight App Screenshot" loading="lazy" width="350" height="200">
         <h3>Wear Level Insight</h3>
         <div class="project-overlay">
-          <p>Wear Level Insight for android devices to check storage health</p>
+          <p>Wear Level Insight for Android devices to check storage health.</p>
           <a href="wearlevelinsight.html" class="project-link">DETAILS</a>
         </div>
       </div>
@@ -90,7 +106,7 @@
         <img src="assets/woahelper.webp" alt="WIN Cross Tool Screenshot" loading="lazy" width="350" height="200">
         <h3>WIN Cross</h3>
         <div class="project-overlay">
-          <p>Tool to manage dualboot Windows and Android OS on Poco X3 Pro.</p>
+          <p>Tool to manage dual-boot Windows and Android on Poco X3 Pro.</p>
           <a href="wincross.html" class="project-link">DETAILS</a>
         </div>
       </div>
@@ -146,8 +162,8 @@
         <div class="footer-col footer-links">
           <h4>Navigation</h4>
           <ul>
-            <li><a href="#blog">Article</a></li>
-            <li><a href="#projects">Portofolio</a></li>
+            <li><a href="#blog">Articles</a></li>
+            <li><a href="#projects">Portfolio</a></li>
             <li><a href="profile.html">Full Profile</a></li>
             <li><a href="spin.html">Spin Lembur</a></li>
           </ul>

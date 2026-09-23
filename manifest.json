@@ -1,8 +1,10 @@
 {
-  "name": "Vern Kuato",
+  "id": "vern-kuato-portfolio",
+  "name": "Vern Kuato | Android Developer",
   "short_name": "VernKuato",
-  "description": "Vern Kuato - Android Developer & IT Specialist",
+  "description": "Vern Kuato - Android Developer & IT Specialist. Building kernels, tools, and useful Android apps.",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0a1628",
   "theme_color": "#0a1628",
@@ -10,12 +12,12 @@
   "icons": [
     {
       "src": "assets/logo.ico",
-      "sizes": "192x192",
+      "sizes": "48x48 32x32 16x16",
       "type": "image/x-icon"
     },
     {
       "src": "assets/logo.svg",
-      "sizes": "512x512",
+      "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }

@@ -49,6 +49,11 @@
   font-family: 'Poppins', sans-serif;
 }
 
+:focus-visible {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 3px;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: clamp(60px, 8vh, 120px);
@@ -374,11 +379,11 @@ nav {
 
 .project-link {
   background: var(--primary-accent);
-  color: white;
+  color: #0a1628;
   padding: clamp(8px, 1.5vh, 12px) clamp(16px, 3vw, 20px);
   border-radius: clamp(20px, 3vw, 30px);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(12px, 2vw, 14px);
   transition: all 0.3s ease;
   border: 1px solid var(--primary-accent);
@@ -395,14 +400,14 @@ nav {
 
 @media (prefers-color-scheme: light) {
   .project-link {
-    background: #c7d2fe;
-    color: #4f46e5;
-    border-color: #c7d2fe;
+    background: #4f46e5;
+    color: #ffffff;
+    border-color: #4f46e5;
   }
   .project-link:hover {
-    background: #a5b4fc;
-    border-color: #a5b4fc;
-    color: #4f46e5;
+    background: #4338ca;
+    border-color: #4338ca;
+    color: #ffffff;
   }
 }
 
@@ -539,7 +544,7 @@ nav {
 }
 
 .card ul li::before {
-  content: 'check_circle';
+  content: '\e86c';
   font-family: 'Material Icons';
   position: absolute;
   left: 0;
@@ -938,7 +943,7 @@ nav {
 .spin-input-area button {
   padding: clamp(10px, 1.5vh, 12px) clamp(16px, 3vw, 20px);
   background-color: var(--primary-accent);
-  color: white;
+  color: #0a1628;
   border: none;
   border-radius: clamp(25px, 3vw, 30px);
   cursor: pointer;
@@ -983,9 +988,16 @@ nav {
 
 @media screen and (max-width: 640px) {
   header { width: 95%; top: clamp(8px, 1.2vh, 12px); padding: clamp(7px, 0.8vh, 9px) clamp(10px, 2vw, 16px); border-radius: 10px; }
-  nav { gap: clamp(3px, 0.5vw, 5px); }
+  nav { gap: clamp(4px, 0.8vw, 8px); }
   .logo img { height: clamp(28px, 4vw, 36px); }
-  .nav-links a { padding: clamp(5px, 0.8vh, 7px) clamp(8px, 1.2vw, 12px); font-size: clamp(10px, 1.5vw, 12px); border-radius: 10px; }
+  .nav-links a {
+    padding: 8px 12px;
+    font-size: clamp(11px, 2.2vw, 12px);
+    border-radius: 10px;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+  }
 
   .hero { padding: clamp(15px, 3vw, 30px); margin-top: clamp(60px, 10vh, 80px); }
   .hero h1 { font-size: clamp(22px, 5vw, 28px); }
@@ -998,18 +1010,15 @@ nav {
 
   .profile-image { width: clamp(80px, 20vw, 120px) !important; height: clamp(80px, 20vw, 120px) !important; }
 
-  --card-margin: var(--card-margin-mobile);
+  :root {
+    --card-margin: var(--card-margin-mobile);
+  }
 
-  .about-card, .project-list, .contact, .profile-container, .container {
+  .about-card, .project-list, .profile-container, .container {
     margin-top: var(--card-margin-mobile);
   }
 
   .about-card { padding: clamp(20px, 3vw, 30px); }
-
-  .contact {
-    margin: var(--card-margin-mobile) auto clamp(40px, 6vh, 60px);
-    padding: clamp(25px, 4vw, 35px);
-  }
 
   .spin-body { padding-bottom: clamp(10px, 2vh, 15px); }
   .spin-title { font-size: clamp(1.5rem, 4vw, 2rem); }
@@ -1204,4 +1213,85 @@ nav {
   font-size: clamp(0.7em, 1.6vw, 0.78em);
   color: var(--text-muted);
   margin-top: 3px;
+}
+
+/* --- SPIN RESULT MODAL --- */
+.spin-result-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 22, 40, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.spin-result-modal.active {
+  display: flex;
+  animation: fadeInModal 0.3s ease-out;
+}
+
+.spin-result-box {
+  background: var(--glass-bg);
+  border: 2px solid var(--primary-accent);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(255, 145, 0, 0.35);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.spin-result-badge {
+  display: inline-block;
+  background: rgba(255, 145, 0, 0.2);
+  color: var(--primary-accent);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  border: 1px solid var(--primary-accent);
+}
+
+.spin-result-winner {
+  font-size: clamp(1.8rem, 5vw, 2.3rem);
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-weight: 800;
+  text-shadow: 0 0 12px rgba(255, 145, 0, 0.6);
+}
+
+.spin-result-msg {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.spin-result-btn {
+  background: var(--primary-accent);
+  color: #0a1628;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.spin-result-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 145, 0, 0.5);
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
 }

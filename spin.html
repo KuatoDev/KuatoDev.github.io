@@ -5,13 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Spin Lembur - Random spin wheel untuk nentuin siapa yang lembur.">
   <meta name="theme-color" content="#0a1628">
+  <link rel="canonical" href="https://vernkuato.zone.id/spin.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vernkuato.zone.id/spin.html">
+  <meta property="og:title" content="Spin Lembur 🎯 | Vern Kuato">
+  <meta property="og:description" content="Random spin wheel seru untuk nentuin giliran lembur.">
+  <meta property="og:image" content="https://vernkuato.zone.id/assets/profile.webp">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://vernkuato.zone.id/spin.html">
+  <meta name="twitter:title" content="Spin Lembur 🎯 | Vern Kuato">
+  <meta name="twitter:description" content="Random spin wheel seru untuk nentuin giliran lembur.">
+  <meta name="twitter:image" content="https://vernkuato.zone.id/assets/profile.webp">
+
   <link rel="manifest" href="manifest.json">
   <title>Spin Lembur | Vern Kuato</title>
   <link rel="icon" href="assets/logo.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="spin-body">
@@ -24,7 +40,7 @@
 
   <div class="toolbar-area">
     <a href="index.html" class="back-btn">
-      <span class="material-icons" aria-hidden="true">arrow_back</span> Home
+      <span class="material-icons" aria-hidden="true">arrow_back</span> Back to Home
     </a>
   </div>
 
@@ -46,6 +62,16 @@ SURYAMIN
 ARIS
 AFJAN</textarea>
       <button id="spinBtn">PUTAR GES! 🎲</button>
+    </div>
+  </div>
+
+  <!-- Modal Popup Hasil Pemenang -->
+  <div id="spinResultModal" class="spin-result-modal" aria-hidden="true" role="dialog" aria-labelledby="spinResultWinner">
+    <div class="spin-result-box">
+      <span class="spin-result-badge">🚨 HASIL LEMBUR 🚨</span>
+      <h2 id="spinResultWinner" class="spin-result-winner">NAME</h2>
+      <p id="spinResultMsg" class="spin-result-msg">Message</p>
+      <button id="spinResultClose" class="spin-result-btn">Sikat Bro! 🔥</button>
     </div>
   </div>
 
