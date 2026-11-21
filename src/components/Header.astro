@@ -1,0 +1,22 @@
+---
+interface Props {
+  isHome?: boolean;
+}
+const { isHome = false } = Astro.props;
+const prefix = isHome ? '' : '/';
+---
+<header>
+  <nav>
+    <div class="logo">
+      <a href="/index.html" aria-label="Vern Kuato Home">
+        <img src="/assets/logo.svg" alt="Vern Kuato Logo" width="40" height="40" />
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href={`${prefix}#blog`}>Articles</a></li>
+      <li><a href={`${prefix}#projects`}>Portfolio</a></li>
+      <li><a href={`${prefix}#profile`}>Profile</a></li>
+      <li><a href={`${prefix}#contact`}>Contact</a></li>
+    </ul>
+  </nav>
+</header>
