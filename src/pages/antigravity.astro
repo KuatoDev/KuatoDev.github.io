@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Antigravity for Android",
+  "operatingSystem": "Android 11+",
+  "applicationCategory": "DeveloperApplication",
+  "description": "Native Android port of Google Antigravity Agentic IDE. Run AI coding agents directly on your phone without a PC.",
+  "downloadUrl": "https://github.com/KuatoDev/Antigravity/releases/download/v1.0.0/app-release.apk",
+  "softwareVersion": "1.0.0",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Vern Kuato",
+    "url": "https://vernkuato.zone.id/"
+  }
+};
+---
+<BaseLayout
+  title="Antigravity for Android | Vern Kuato"
+  description="Native Android port of Google Antigravity Agentic IDE. Run AI coding agents directly on your phone without a PC."
+  image="https://vernkuato.zone.id/assets/antigravity.png"
+  canonicalURL="https://vernkuato.zone.id/antigravity.html"
+  showNav={false}
+  showFooter={false}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+    <style>
+      .badge-container { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
+      .badge { font-size: 0.8em; padding: 5px 12px; border-radius: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; }
+      .badge-blue { background: rgba(33,150,243,0.2); color: #64b5f6; border: 1px solid rgba(33,150,243,0.4); }
+      .badge-green { background: rgba(76,175,80,0.2); color: #81c784; border: 1px solid rgba(76,175,80,0.4); }
+      .badge-purple { background: rgba(156,39,176,0.2); color: #ce93d8; border: 1px solid rgba(156,39,176,0.4); }
+      .feature-list, .perm-list { list-style: none; padding: 0; margin-top: 15px; }
+      .feature-list li, .perm-list li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; font-size: 0.95em; line-height: 1.5; }
+      .feature-list i { color: var(--primary-accent); margin-top: 2px; }
+      .perm-list i { color: var(--text-muted); margin-top: 2px; }
+      .cta-button-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+      .secondary-link {
+        padding: 15px 30px;
+        font-size: 1.05em;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid var(--glass-border);
+        color: var(--text-main);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        transition: all 0.25s ease;
+        text-decoration: none;
+      }
+      .secondary-link:hover {
+        background: rgba(255,255,255,0.12);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        color: #fff;
+      }
+      .highlight-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 25px 0;
+      }
+    </style>
+  </Fragment>
+
+  <main id="main">
+    <div class="toolbar-area">
+      <a href="/index.html" class="back-btn">
+        <span class="material-icons" aria-hidden="true">arrow_back</span> Back to Home
+      </a>
+    </div>
+
+    <div class="article-container">
+      <article class="single-article-card">
+
+        <div class="article-header" style="border-bottom:none;padding-bottom:0;">
+          <img src="/assets/antigravity.png" alt="Antigravity for Android Banner" width="1024" height="576" style="width:100%;height:auto;aspect-ratio:16/9;border-radius:12px;margin-bottom:20px;border:1px solid var(--glass-border);" fetchpriority="high" />
+          <h1>Antigravity for Android</h1>
+          <p style="color:var(--text-muted);font-size:0.9em;margin-bottom:15px;">Native Android port of Google Antigravity Agentic IDE</p>
+          <div class="badge-container">
+            <span class="badge badge-green"><i class="material-icons" style="font-size:14px;" aria-hidden="true">verified</i> v1.0.0 Release</span>
+            <span class="badge badge-blue"><i class="material-icons" style="font-size:14px;" aria-hidden="true">smartphone</i> Android 11+</span>
+            <span class="badge badge-purple"><i class="material-icons" style="font-size:14px;" aria-hidden="true">memory</i> ARM64 (aarch64)</span>
+            <span class="badge" style="background:rgba(255,255,255,0.1);border:1px solid var(--glass-border);"><i class="material-icons" style="font-size:14px;" aria-hidden="true">code</i> Jetpack Compose</span>
+          </div>
+        </div>
+
+        <div class="article-content">
+          <p><strong>Antigravity for Android</strong> runs Google Antigravity AI coding agents directly on Android devices. It provides a standalone ARM64 Linux userspace paired with a sleek, native Jetpack Compose UI — enabling autonomous AI agents to inspect your codebase, edit project files, and execute terminal commands (<code>git</code>, <code>bash</code>, <code>python</code>, <code>pkg</code>) on your smartphone without requiring a computer.</p>
+
+          <div class="highlight-card">
+            <h3 style="margin-top:0;"><i class="material-icons" style="vertical-align:middle;color:var(--primary-accent);" aria-hidden="true">stars</i> Key Features</h3>
+            <ul class="feature-list">
+              <li><i class="material-icons" aria-hidden="true">check_circle</i> <strong>Jetpack Compose UI:</strong> Modern, lightweight chat interface and mobile-tailored code viewer.</li>
+              <li><i class="material-icons" aria-hidden="true">check_circle</i> <strong>Local Linux Userspace:</strong> Full ARM64 environment with <code>bash</code>, <code>python3</code>, <code>git</code>, and dev utilities.</li>
+              <li><i class="material-icons" aria-hidden="true">check_circle</i> <strong>Official Agent Core:</strong> Powered by the Antigravity <code>language_server</code> authenticated via Google OAuth 2.0 PKCE.</li>
+              <li><i class="material-icons" aria-hidden="true">check_circle</i> <strong>Package Manager (<code>pkg</code>):</strong> Built-in terminal package manager for effortlessly installing developer tools.</li>
+              <li><i class="material-icons" aria-hidden="true">check_circle</i> <strong>Background Daemon (<code>agy-daemon</code>):</strong> Manages cron jobs, file watchers, and real-time push notifications.</li>
+              <li><i class="material-icons" aria-hidden="true">check_circle</i> <strong>Skills &amp; Plugins Catalogue:</strong> Discover and load community extensions and skills directly from GitHub.</li>
+            </ul>
+          </div>
+
+          <h3><i class="material-icons" style="vertical-align:middle;" aria-hidden="true">tune</i> System Requirements</h3>
+          <ul class="perm-list">
+            <li><i class="material-icons" aria-hidden="true">android</i> <strong>Operating System:</strong> Android 11.0 or higher.</li>
+            <li><i class="material-icons" aria-hidden="true">developer_board</i> <strong>Architecture:</strong> 64-bit ARM (<code>arm64-v8a</code>).</li>
+            <li><i class="material-icons" aria-hidden="true">folder_shared</i> <strong>Permissions:</strong> Storage access (All Files Access) to manage local workspace repositories.</li>
+            <li><i class="material-icons" aria-hidden="true">notifications</i> <strong>Notifications:</strong> For background agent progress and task completion alerts.</li>
+          </ul>
+
+          <h3><i class="material-icons" style="vertical-align:middle;" aria-hidden="true">account_tree</i> Ecosystem &amp; Related Projects</h3>
+          <p style="font-size:0.95em;color:var(--text-muted);">Antigravity for Android is part of an extensible agentic ecosystem:</p>
+          <ul class="feature-list">
+            <li><i class="material-icons" aria-hidden="true">archive</i> <a href="https://github.com/KuatoDev/antigravity-bootstrap" target="_blank" rel="noopener noreferrer" style="color:var(--primary-accent);text-decoration:none;font-weight:600;">antigravity-bootstrap</a> — Pre-built Linux ARM64 rootfs extracted automatically on first run.</li>
+            <li><i class="material-icons" aria-hidden="true">extension</i> <a href="https://github.com/KuatoDev/antigravity-catalogue" target="_blank" rel="noopener noreferrer" style="color:var(--primary-accent);text-decoration:none;font-weight:600;">antigravity-catalogue</a> — Open skills and plugins catalogue open for community contributions.</li>
+          </ul>
+
+          <div class="cta-button-group">
+            <a href="https://github.com/KuatoDev/Antigravity/releases/download/v1.0.0/app-release.apk" class="project-link" style="padding:15px 35px;font-size:1.1em;display:inline-flex;align-items:center;gap:8px;">
+              <i class="material-icons" aria-hidden="true">download</i> Download APK (v1.0.0)
+            </a>
+            <a href="https://github.com/KuatoDev/Antigravity/releases/latest" target="_blank" rel="noopener noreferrer" class="secondary-link">
+              <i class="material-icons" aria-hidden="true">launch</i> GitHub Releases
+            </a>
+            <a href="https://github.com/KuatoDev/Antigravity" target="_blank" rel="noopener noreferrer" class="secondary-link">
+              <i class="material-icons" aria-hidden="true">code</i> Source Code
+            </a>
+          </div>
+
+          <div style="margin-top:40px;text-align:center;">
+            <p style="color:var(--text-muted);font-size:0.9em;">Join our community or get updates:</p>
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px;">
+              <a href="https://t.me/vernkuato" target="_blank" rel="noopener noreferrer" class="secondary-link" style="padding:8px 18px;font-size:0.9em;">
+                <i class="material-icons" style="font-size:16px;" aria-hidden="true">send</i> Telegram Channel
+              </a>
+              <a href="https://t.me/kuatodevprojects" target="_blank" rel="noopener noreferrer" class="secondary-link" style="padding:8px 18px;font-size:0.9em;">
+                <i class="material-icons" style="font-size:16px;" aria-hidden="true">group</i> Telegram Group
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </article>
+    </div>
+  </main>
+</BaseLayout>
