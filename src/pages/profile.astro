@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Vern Kuato",
+    "url": "https://vernkuato.zone.id/profile.html",
+    "image": "https://vernkuato.zone.id/assets/profile.webp",
+    "jobTitle": "Customer Service, Fleet & Data Analytics, Android Developer",
+    "sameAs": [
+      "https://github.com/KuatoDev",
+      "https://t.me/vernkuato",
+      "https://instagram.com/kuatodev"
+    ]
+  }
+};
+---
+<BaseLayout
+  title="Profile - Vern Kuato"
+  description="Professional profile of Vern Kuato: Customer Service, Fleet Analytics, and Android Development."
+  canonicalURL="https://vernkuato.zone.id/profile.html"
+  showNav={false}
+  showFooter={false}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  </Fragment>
+
+  <div class="toolbar-area">
+    <a href="/index.html" class="back-btn">
+      <span class="material-icons" aria-hidden="true">arrow_back</span> Back to Home
+    </a>
+  </div>
+
+  <div class="container">
+    <div class="profile-card">
+      <div class="card-header">
+        <img src="/assets/profile.webp" alt="Profile Picture of Vern Kuato" class="profile-image" width="150" height="150" fetchpriority="high" />
+        <h1>Vern Kuato</h1>
+      </div>
+      <p>Customer Service | Fleet &amp; Data Analytics | Android Development | UI/UX Design</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="material-icons" aria-hidden="true">work</span> Professional Profile</h2>
+      <p>Highly dedicated IT professional with a comprehensive background in technical support, data analytics, and hands-on experience in emerging software development, particularly for Android platforms.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="material-icons" aria-hidden="true">star</span> Core Competencies</h2>
+      <ul>
+        <li>Extensive <strong>GPS Technical Support</strong> and <strong>Fleet Management</strong> experience (7 years).</li>
+        <li>Proficiency in <strong>Kotlin</strong> and foundational <strong>Java</strong>.</li>
+        <li>Demonstrated strength in <strong>complex troubleshooting</strong>.</li>
+        <li>Specialized knowledge in <strong>IoT Technology Systems</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="material-icons" aria-hidden="true">timeline</span> Professional Experience</h2>
+      <ul>
+        <li><strong>Current Role:</strong> Senior GPS Support Specialist (7 years of tenure)</li>
+        <li><strong>Previous Role:</strong> IT Engineer of Internet Banking Corporation at Bank DKI</li>
+        <li><strong>Previous Role:</strong> IT Support at Sahabat Dhuafa</li>
+        <li><strong>Previous Role:</strong> Security Officer at Hotel Santika Cikarang</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="material-icons" aria-hidden="true">code</span> Technical Interests</h2>
+      <p>Passionate focus on developing with <strong>Kotlin</strong> and <strong>Java</strong>, complemented by a growing commitment to modern development.</p>
+    </div>
+  </div>
+</BaseLayout>

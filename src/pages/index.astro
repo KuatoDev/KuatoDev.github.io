@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import GithubActivity from '../components/GithubActivity.astro';
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://vernkuato.zone.id/#website",
+      "url": "https://vernkuato.zone.id/",
+      "name": "Vern Kuato",
+      "description": "Vern Kuato - Android Developer & IT Specialist. Building kernels, tools, and useful Android apps.",
+      "publisher": {
+        "@id": "https://vernkuato.zone.id/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://vernkuato.zone.id/#person",
+      "name": "Vern Kuato",
+      "url": "https://vernkuato.zone.id/",
+      "image": "https://vernkuato.zone.id/assets/profile.webp",
+      "jobTitle": "Android Developer & Fleet Monitoring Specialist",
+      "sameAs": [
+        "https://github.com/KuatoDev",
+        "https://t.me/vernkuato",
+        "https://instagram.com/kuatodev"
+      ]
+    }
+  ]
+};
+---
+<BaseLayout
+  title="Vern Kuato | Android Developer"
+  description="Vern Kuato - Android Developer & IT Specialist. Building kernels, tools, and useful Android apps."
+  isHome={true}
+  showFooter={false}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  </Fragment>
+
+  <section class="hero" aria-label="Introduction">
+    <h1 aria-label="Hi, I am Vern Kuato">Hi, I am <span class="typing">Vern Kuato</span><span class="cursor" aria-hidden="true">|</span></h1>
+    <p>I am a human from planet earth 🌎</p>
+  </section>
+
+  <section id="blog" class="blog" aria-label="Latest Articles">
+    <h2>Latest Articles</h2>
+    <div class="blog-list home-limit">
+      <p style="color: var(--text-muted); text-align: center; width: 100%;">Loading articles...</p>
+    </div>
+    <div>
+      <a href="blog.html" class="view-all-btn">View All Posts</a>
+    </div>
+  </section>
+
+  <section id="projects" class="projects" aria-label="Portfolio">
+    <h2>Portfolio</h2>
+    <div class="project-list">
+      <ProjectCard
+        title="Antigravity"
+        description="Native Android port of Google Antigravity Agentic IDE."
+        link="antigravity.html"
+        image="assets/antigravity.png"
+        alt="Antigravity for Android Showcase"
+        actionText="DETAILS"
+        imgStyle="object-fit: cover;"
+      />
+      <ProjectCard
+        title="Wear Level Insight"
+        description="Wear Level Insight for Android devices to check storage health."
+        link="wearlevelinsight.html"
+        image="assets/wearlevelinsight.webp"
+        alt="Wear Level Insight App Screenshot"
+        actionText="DETAILS"
+      />
+      <ProjectCard
+        title="OneUI Icons"
+        description="Beautiful OneUI Icon pack for Android 8+."
+        link="https://www.pling.com/p/1610012/"
+        image="assets/oneuiicon.jpg"
+        alt="OneUI Icon Pack Preview"
+        actionText="DOWNLOAD"
+        isExternal={true}
+      />
+      <ProjectCard
+        title="WIN Cross"
+        description="Tool to manage dual-boot Windows and Android on Poco X3 Pro."
+        link="wincross.html"
+        image="assets/woahelper.webp"
+        alt="WIN Cross Tool Screenshot"
+        actionText="DETAILS"
+      />
+    </div>
+  </section>
+
+  <section id="profile" class="about-preview" aria-label="About Me">
+    <div class="about-card">
+      <h2>Who am I?</h2>
+      <div class="about-info">
+        <h3>I am Vern Kuato</h3>
+        <span class="role">Android Developer & Fleet Monitoring Specialist</span>
+        <p>Passionate about tweaking Android systems, building kernels, and creating useful tools like WIN Cross. I love turning complex problems into simple code solutions.</p>
+        <div>
+          <a href="profile.html" class="project-link">
+            View Full Profile <span class="material-icons" style="font-size: 16px; vertical-align: middle; margin-left: 5px;" aria-hidden="true">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <GithubActivity />
+  </section>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-glow" aria-hidden="true"></div>
+    <div class="footer-inner">
+
+      <div class="footer-col footer-brand">
+        <img src="assets/logo.svg" alt="Vern Kuato Logo" width="48" height="48" loading="lazy" />
+        <div>
+          <h3>Vern Kuato</h3>
+          <p>Android Developer &amp; Fleet Monitoring Specialist</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div class="footer-col footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#blog">Articles</a></li>
+            <li><a href="#projects">Portfolio</a></li>
+            <li><a href="profile.html">Full Profile</a></li>
+            <li><a href="antigravity.html">Antigravity</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-contact">
+          <h4>Get in Touch</h4>
+          <ul>
+            <li>
+              <span class="material-icons" aria-hidden="true">email</span>
+              <a href="mailto:vernkuato@gmail.com">vernkuato@gmail.com</a>
+            </li>
+            <li>
+              <span class="material-icons" aria-hidden="true">send</span>
+              <a href="https://t.me/vernkuato" target="_blank" rel="noopener noreferrer">Telegram Channel</a>
+            </li>
+            <li>
+              <span class="material-icons" aria-hidden="true">code</span>
+              <a href="https://github.com/KuatoDev" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </li>
+            <li>
+              <span class="material-icons" aria-hidden="true">photo_camera</span>
+              <a href="https://instagram.com/kuatodev" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-copyright">
+      <p>&copy; {new Date().getFullYear()} Vern Kuato. Built with &#9749; on a Poco X3 Pro.</p>
+    </div>
+  </footer>
+</BaseLayout>
