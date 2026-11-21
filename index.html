@@ -26,11 +26,47 @@
   <link rel="icon" href="assets/logo.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.github.com" crossorigin>
+  <link rel="dns-prefetch" href="https://api.github.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://vernkuato.zone.id/#website",
+        "url": "https://vernkuato.zone.id/",
+        "name": "Vern Kuato",
+        "description": "Vern Kuato - Android Developer & IT Specialist. Building kernels, tools, and useful Android apps.",
+        "publisher": {
+          "@id": "https://vernkuato.zone.id/#person"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://vernkuato.zone.id/#person",
+        "name": "Vern Kuato",
+        "url": "https://vernkuato.zone.id/",
+        "image": "https://vernkuato.zone.id/assets/profile.webp",
+        "jobTitle": "Android Developer & Fleet Monitoring Specialist",
+        "sameAs": [
+          "https://github.com/KuatoDev",
+          "https://t.me/vernkuato",
+          "https://instagram.com/kuatodev"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+
+  <a href="#blog" class="skip-link">Skip to main content</a>
 
   <div class="background-wrapper" aria-hidden="true">
     <div class="orb orb-1"></div>
@@ -72,6 +108,15 @@
   <section id="projects" class="projects" aria-label="Portfolio">
     <h2>Portfolio</h2>
     <div class="project-list">
+
+      <div class="project-card">
+        <img src="assets/antigravity.png" alt="Antigravity for Android Showcase" loading="lazy" width="350" height="200" style="object-fit: cover;">
+        <h3>Antigravity</h3>
+        <div class="project-overlay">
+          <p>Native Android port of Google Antigravity Agentic IDE.</p>
+          <a href="antigravity.html" class="project-link">DETAILS</a>
+        </div>
+      </div>
 
       <div class="project-card">
         <div style="width: 100%; height: clamp(180px, 45vw, 260px); background: linear-gradient(135deg, #ff9100, #ff3d00); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--glass-border);">
@@ -151,7 +196,7 @@
     <div class="footer-inner">
 
       <div class="footer-col footer-brand">
-        <img src="assets/logo.svg" alt="Vern Kuato Logo" width="48" height="48">
+        <img src="assets/logo.svg" alt="Vern Kuato Logo" width="48" height="48" loading="lazy">
         <div>
           <h3>Vern Kuato</h3>
           <p>Android Developer &amp; Fleet Monitoring Specialist</p>

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vern-pwa-v5';
+const CACHE_NAME = 'vern-pwa-v8';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -7,6 +7,8 @@ const ASSETS_TO_CACHE = [
   './spin.html',
   './wincross.html',
   './wearlevelinsight.html',
+  './antigravity.html',
+  './404.html',
   './blog/article-1.html',
   './blog/article-2.html',
   './blog/article-3.html',
@@ -15,11 +17,17 @@ const ASSETS_TO_CACHE = [
   './script.js',
   './manifest.json',
   './blog/posts.json',
+  './robots.txt',
+  './sitemap.xml',
   './assets/logo.svg',
   './assets/logo.ico',
+  './assets/icon-192.png',
+  './assets/icon-512.png',
+  './assets/icon-maskable-512.png',
   './assets/profile.webp',
   './assets/wearlevelinsight.webp',
   './assets/woahelper.webp',
+  './assets/antigravity.png',
   './assets/oneuiicon.jpg',
   './assets/blogs/article4.jpg'
 ];
@@ -51,13 +59,8 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Network-first for HTML pages and posts.json to ensure fresh content
-  const isHtmlOrJson = request.mode === 'navigate' ||
-                       url.pathname.endsWith('.html') ||
-                       url.pathname.endsWith('/') ||
-                       url.pathname.endsWith('posts.json');
-
-  if (isHtmlOrJson) {
+  // Handle posts.json specifically (return empty JSON array on offline miss, never HTML!)
+  if (url.pathname.endsWith('posts.json')) {
     event.respondWith(
       fetch(request)
         .then(networkResponse => {
@@ -67,7 +70,29 @@ self.addEventListener('fetch', event => {
           }
           return networkResponse;
         })
-        .catch(() => caches.match(request).then(cached => cached || caches.match('./index.html')))
+        .catch(() => caches.match(request).then(cached => cached || new Response('[]', {
+          headers: { 'Content-Type': 'application/json' }
+        })))
+    );
+    return;
+  }
+
+  // Network-first for HTML pages and navigations
+  const isHtml = request.mode === 'navigate' ||
+                 url.pathname.endsWith('.html') ||
+                 url.pathname.endsWith('/');
+
+  if (isHtml) {
+    event.respondWith(
+      fetch(request)
+        .then(networkResponse => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(request, responseClone));
+          }
+          return networkResponse;
+        })
+        .catch(() => caches.match(request).then(cached => cached || caches.match('./404.html') || caches.match('./index.html')))
     );
     return;
   }
@@ -83,9 +108,13 @@ self.addEventListener('fetch', event => {
           }
           return networkResponse;
         })
-        .catch(() => cachedResponse);
+        .catch(() => cachedResponse || new Response('', { status: 503, statusText: 'Offline' }));
 
-      return cachedResponse || fetchPromise;
+      if (cachedResponse) {
+        event.waitUntil(fetchPromise);
+        return cachedResponse;
+      }
+      return fetchPromise;
     })
   );
 });

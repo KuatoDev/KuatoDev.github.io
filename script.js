@@ -33,38 +33,143 @@ function initTyping() {
   type();
 }
 
-/* --- DYNAMIC BLOG LOADING --- */
+/* --- DYNAMIC BLOG LOADING (With Zero-CLS Skeleton & Interactive Search/Filter) --- */
+let allBlogPosts = [];
+let activeTag = 'all';
+let searchQuery = '';
+
+function renderBlogSkeleton(container, count = 3) {
+  container.innerHTML = Array(count).fill(0).map(() => `
+    <div class="blog-card blog-skeleton-card">
+      <div class="skeleton-shimmer skeleton-meta"></div>
+      <div class="skeleton-shimmer skeleton-title"></div>
+      <div class="skeleton-shimmer skeleton-desc-1"></div>
+      <div class="skeleton-shimmer skeleton-desc-2"></div>
+    </div>
+  `).join('');
+}
+
+function renderArticlesList(container, posts, isInsideBlogFolder) {
+  if (!posts || posts.length === 0) {
+    container.innerHTML = `
+      <div class="blog-empty">
+        <span class="material-icons" aria-hidden="true">search_off</span>
+        <h3>No matching articles</h3>
+        <p>Try a different keyword or reset the category filter.</p>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = posts.map(post => {
+    const finalLink = isInsideBlogFolder ? '../' + post.link : post.link;
+    return `
+      <a href="${finalLink}" class="blog-card">
+        <div class="blog-meta">
+          <span class="material-icons" style="font-size:14px;" aria-hidden="true">calendar_today</span> ${post.date}
+          <span aria-hidden="true">•</span>
+          <span class="material-icons" style="font-size:14px;" aria-hidden="true">tag</span> ${post.tag}
+        </div>
+        <h4>${post.title}</h4>
+        <p>${post.description}</p>
+        <span class="read-more-link">Read Article <span class="material-icons" style="font-size:16px;" aria-hidden="true">arrow_forward</span></span>
+      </a>`;
+  }).join('');
+}
+
+function filterAndRenderArticles(container, isInsideBlogFolder) {
+  let filtered = allBlogPosts;
+
+  if (activeTag !== 'all') {
+    filtered = filtered.filter(p => p.tag && p.tag.toLowerCase() === activeTag.toLowerCase());
+  }
+
+  if (searchQuery.trim() !== '') {
+    const q = searchQuery.toLowerCase().trim();
+    filtered = filtered.filter(p =>
+      (p.title && p.title.toLowerCase().includes(q)) ||
+      (p.description && p.description.toLowerCase().includes(q)) ||
+      (p.tag && p.tag.toLowerCase().includes(q))
+    );
+  }
+
+  renderArticlesList(container, filtered, isInsideBlogFolder);
+}
+
+function setupBlogControls(container, isInsideBlogFolder) {
+  const searchInput = document.getElementById('blogSearchInput');
+  const clearBtn = document.getElementById('blogSearchClear');
+  const tagsContainer = document.getElementById('blogTagsContainer');
+
+  if (!searchInput && !tagsContainer) return;
+
+  // 1. Generate Tag Chips from posts
+  if (tagsContainer && allBlogPosts.length > 0) {
+    const uniqueTags = Array.from(new Set(allBlogPosts.map(p => p.tag).filter(Boolean)));
+    const chipsHtml = ['<button class="tag-chip active" data-tag="all">All</button>']
+      .concat(uniqueTags.map(t => `<button class="tag-chip" data-tag="${t}">${t}</button>`))
+      .join('');
+    tagsContainer.innerHTML = chipsHtml;
+
+    tagsContainer.addEventListener('click', (e) => {
+      const chip = e.target.closest('.tag-chip');
+      if (!chip) return;
+      tagsContainer.querySelectorAll('.tag-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeTag = chip.getAttribute('data-tag') || 'all';
+      filterAndRenderArticles(container, isInsideBlogFolder);
+    });
+  }
+
+  // 2. Search Box Listener (with 200ms debounce)
+  if (searchInput) {
+    let debounceTimer;
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      if (clearBtn) {
+        clearBtn.style.display = searchQuery.length > 0 ? 'inline-flex' : 'none';
+      }
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        filterAndRenderArticles(container, isInsideBlogFolder);
+      }, 200);
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        clearBtn.style.display = 'none';
+        searchInput.focus();
+        filterAndRenderArticles(container, isInsideBlogFolder);
+      });
+    }
+  }
+}
+
 async function loadBlogPosts() {
   const blogContainer = document.querySelector('.blog-list');
   if (!blogContainer) return;
 
+  const isHomeLimit = blogContainer.classList.contains('home-limit');
   const isInsideBlogFolder = Boolean(document.querySelector('link[href*="../style.css"]')) || window.location.pathname.includes('/blog/');
   const basePath = isInsideBlogFolder ? '../' : '';
   const jsonPath = basePath + 'blog/posts.json';
+
+  // Render Zero-CLS skeleton placeholder immediately
+  renderBlogSkeleton(blogContainer, isHomeLimit ? 1 : 3);
 
   try {
     const response = await fetch(jsonPath);
     if (!response.ok) throw new Error('Gagal load data');
 
-    let posts = await response.json();
-    if (blogContainer.classList.contains('home-limit')) {
-      posts = posts.slice(0, 1);
-    }
+    allBlogPosts = await response.json();
 
-    blogContainer.innerHTML = posts.map(post => {
-      const finalLink = isInsideBlogFolder ? '../' + post.link : post.link;
-      return `
-        <a href="${finalLink}" class="blog-card">
-          <div class="blog-meta">
-            <span class="material-icons" style="font-size:14px;" aria-hidden="true">calendar_today</span> ${post.date}
-            <span aria-hidden="true">•</span>
-            <span class="material-icons" style="font-size:14px;" aria-hidden="true">tag</span> ${post.tag}
-          </div>
-          <h4>${post.title}</h4>
-          <p>${post.description}</p>
-          <span class="read-more-link">Read Article <span class="material-icons" style="font-size:16px;" aria-hidden="true">arrow_forward</span></span>
-        </a>`;
-    }).join('');
+    if (isHomeLimit) {
+      renderArticlesList(blogContainer, allBlogPosts.slice(0, 1), isInsideBlogFolder);
+    } else {
+      setupBlogControls(blogContainer, isInsideBlogFolder);
+      renderArticlesList(blogContainer, allBlogPosts, isInsideBlogFolder);
+    }
 
   } catch (error) {
     console.error('Error loading blog:', error);
@@ -91,6 +196,15 @@ function loadIndexWinner() {
 async function loadGithubActivity() {
   const container = document.getElementById('githubActivity');
   if (!container) return;
+
+  // Zero-CLS skeleton placeholder if empty
+  if (!container.querySelector('.github-event') && !container.querySelector('.github-skeleton')) {
+    container.innerHTML = `
+      <div class="github-skeleton skeleton-shimmer"></div>
+      <div class="github-skeleton skeleton-shimmer"></div>
+      <div class="github-skeleton skeleton-shimmer"></div>
+    `;
+  }
 
   const GITHUB_USER = 'KuatoDev';
   const EVENT_LIMIT = 7;
@@ -166,6 +280,9 @@ async function loadGithubActivity() {
     const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/events/public?per_page=30`);
     if (res.status === 403) {
       console.warn('GitHub API rate limit reached, keeping cached data.');
+      if (!container.querySelector('.github-event')) {
+        container.innerHTML = '<p style="color:var(--text-muted);font-size:0.9em;padding:8px 0;">GitHub activity temporarily unavailable (rate limited).</p>';
+      }
       return;
     }
     if (!res.ok) throw new Error(`API error: ${res.status}`);
@@ -290,30 +407,35 @@ function initSpinWheel() {
     ctx.fill();
   }
 
+  function closeModal() {
+    if (!resultModal) return;
+    resultModal.classList.remove('active');
+    resultModal.setAttribute('aria-hidden', 'true');
+    if (spinBtn) spinBtn.focus();
+  }
+
   function showResult(winnerName, message) {
     if (resultModal && resultWinner && resultMsg) {
       resultWinner.textContent = winnerName;
       resultMsg.textContent = message;
       resultModal.classList.add('active');
+      resultModal.setAttribute('aria-hidden', 'false');
+      if (resultClose) resultClose.focus();
     } else {
       alert(`${winnerName}!\n${message}`);
     }
   }
 
   if (resultClose && resultModal) {
-    resultClose.addEventListener('click', () => {
-      resultModal.classList.remove('active');
-    });
+    resultClose.addEventListener('click', closeModal);
 
     resultModal.addEventListener('click', (e) => {
-      if (e.target === resultModal) {
-        resultModal.classList.remove('active');
-      }
+      if (e.target === resultModal) closeModal();
     });
 
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && resultModal.classList.contains('active')) {
-        resultModal.classList.remove('active');
+        closeModal();
       }
     });
   }
@@ -397,12 +519,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Register Service Worker with safe context detection
   if ('serviceWorker' in navigator) {
-    const isSubdir = Boolean(document.querySelector('link[href*="../style.css"]')) || window.location.pathname.includes('/blog/');
-    const swUrl = isSubdir ? '../sw.js' : './sw.js';
-    const swScope = isSubdir ? '../' : './';
-
-    navigator.serviceWorker.register(swUrl, { scope: swScope })
+    navigator.serviceWorker.register('/sw.js', { scope: '/' })
       .then(reg => console.log('SW Registered with scope:', reg.scope))
-      .catch(err => console.error('SW Registration Error:', err));
+      .catch(err => {
+        // Fallback for non-root local file serving environments
+        const isSubdir = Boolean(document.querySelector('link[href*="../style.css"]')) || window.location.pathname.includes('/blog/');
+        const swUrl = isSubdir ? '../sw.js' : './sw.js';
+        navigator.serviceWorker.register(swUrl)
+          .then(r => console.log('SW Fallback registered:', r.scope))
+          .catch(e => console.error('SW Registration Error:', e));
+      });
   }
 });

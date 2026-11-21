@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,8 +29,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Vern Kuato's Blog",
+    "url": "https://vernkuato.zone.id/blog.html",
+    "description": "Writing about mobile OS, Android development, and Tech News.",
+    "publisher": {
+      "@type": "Person",
+      "name": "Vern Kuato",
+      "url": "https://vernkuato.zone.id/"
+    }
+  }
+  </script>
 </head>
 <body>
+
+  <a href="#articlesContainer" class="skip-link">Skip to articles</a>
 
   <div class="background-wrapper" aria-hidden="true">
     <div class="orb orb-1"></div>
@@ -44,13 +62,29 @@
     </a>
   </div>
 
-  <section class="hero" style="height: 50vh;" aria-label="Blog header">
+  <section class="hero" style="height: auto; min-height: 35vh; padding-top: clamp(80px, 12vh, 120px); padding-bottom: 20px;" aria-label="Blog header">
     <h1>Vern's <span style="color: var(--primary-accent);">Blog</span></h1>
     <p>Writing about mobile OS and Tech News</p>
   </section>
 
-  <section class="about" style="padding-top: 0;" aria-label="Articles">
-    <div class="blog-list">
+  <!-- Search & Tag Filter Controls -->
+  <section class="blog-controls-section" aria-label="Search and filter articles">
+    <div class="blog-controls-container">
+      <div class="blog-search-box">
+        <span class="material-icons search-icon" aria-hidden="true">search</span>
+        <input type="text" id="blogSearchInput" placeholder="Search articles or tags…" aria-label="Search articles or tags">
+        <button id="blogSearchClear" class="clear-search-btn" aria-label="Clear search" style="display:none;">
+          <span class="material-icons" aria-hidden="true">close</span>
+        </button>
+      </div>
+      <div class="blog-tags-filter" id="blogTagsContainer" role="toolbar" aria-label="Filter by category tag">
+        <button class="tag-chip active" data-tag="all">All</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" style="padding-top: 10px;" aria-label="Articles">
+    <div class="blog-list" id="articlesContainer">
       <p style="color: var(--text-muted); text-align:center; width:100%;">Loading articles...</p>
     </div>
   </section>

@@ -1295,3 +1295,198 @@ nav {
   from { opacity: 0; transform: scale(0.92); }
   to { opacity: 1; transform: scale(1); }
 }
+
+/* --- ACCESSIBILITY SKIP LINK --- */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 20px;
+  background: var(--primary-accent);
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 100000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 20px;
+}
+
+/* --- SKELETON PLACEHOLDERS (Zero-CLS) --- */
+.skeleton-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+  background-size: 200% 100%;
+  animation: skeletonPulse 1.6s infinite ease-in-out;
+  border-radius: 8px;
+}
+
+@keyframes skeletonPulse {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.blog-skeleton-card {
+  width: 100%;
+  min-height: 160px;
+  border-radius: clamp(12px, 2vw, 16px);
+  padding: clamp(20px, 4vw, 30px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-meta { width: 35%; height: 16px; }
+.skeleton-title { width: 75%; height: 26px; }
+.skeleton-desc-1 { width: 100%; height: 16px; }
+.skeleton-desc-2 { width: 85%; height: 16px; }
+
+.github-skeleton {
+  width: 100%;
+  height: 52px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+}
+
+/* --- BLOG CONTROLS (Search & Filter) --- */
+.blog-controls-section {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto clamp(20px, 3vh, 35px);
+  padding: 0;
+}
+
+.blog-controls-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.blog-search-box {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+  padding: 8px 18px;
+  box-shadow: var(--box-shadow);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-search-box:focus-within {
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 15px rgba(255, 145, 0, 0.3);
+}
+
+.blog-search-box .search-icon {
+  color: var(--text-muted);
+  font-size: 20px;
+  margin-right: 10px;
+  pointer-events: none;
+}
+
+.blog-search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-main);
+  font-size: clamp(14px, 2vw, 15px);
+  font-family: inherit;
+}
+
+.blog-search-box input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.clear-search-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 50%;
+  transition: color 0.2s ease;
+}
+
+.clear-search-btn:hover {
+  color: var(--primary-accent);
+}
+
+.blog-tags-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.tag-chip {
+  background: var(--btn-bg);
+  color: var(--text-muted);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.tag-chip:hover {
+  border-color: var(--primary-accent);
+  color: var(--text-main);
+}
+
+.tag-chip.active {
+  background: var(--primary-accent);
+  border-color: var(--primary-accent);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(255, 145, 0, 0.4);
+}
+
+.blog-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  width: 100%;
+}
+
+.blog-empty .material-icons {
+  font-size: 48px;
+  color: var(--primary-accent);
+  opacity: 0.6;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Accessibility: Reduced Motion (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .orb {
+    animation: none !important;
+  }
+  .skeleton-shimmer {
+    animation: none !important;
+  }
+  .cursor {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}

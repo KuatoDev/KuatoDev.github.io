@@ -46,23 +46,26 @@
 </head>
 <body>
 
+  <a href="#main" class="skip-link">Skip to main content</a>
+
   <div class="background-wrapper" aria-hidden="true">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
   </div>
 
-  <div class="toolbar-area">
-    <a href="index.html" class="back-btn">
-      <span class="material-icons" aria-hidden="true">arrow_back</span> Back to Home
-    </a>
-  </div>
+  <main id="main">
+    <div class="toolbar-area">
+      <a href="index.html" class="back-btn">
+        <span class="material-icons" aria-hidden="true">arrow_back</span> Back to Home
+      </a>
+    </div>
 
-  <div class="article-container">
-    <article class="single-article-card">
+    <div class="article-container">
+      <article class="single-article-card">
 
-      <div class="article-header" style="border-bottom:none;padding-bottom:0;">
-        <img src="assets/woahelper.webp" alt="WINCross App Banner" style="width:100%;border-radius:12px;margin-bottom:20px;border:1px solid var(--glass-border);" fetchpriority="high">
+        <div class="article-header" style="border-bottom:none;padding-bottom:0;">
+          <img src="assets/woahelper.webp" alt="WINCross App Banner" width="800" height="790" style="width:100%;height:auto;aspect-ratio:2000/1976;border-radius:12px;margin-bottom:20px;border:1px solid var(--glass-border);" fetchpriority="high">
         <h1>WINCross</h1>
         <p style="color:var(--text-muted);font-size:0.9em;margin-bottom:15px;">Cross-Platform Windows Control (formerly WoA Helper)</p>
         <div class="badge-container">
@@ -131,6 +134,7 @@
 
     </article>
   </div>
+  </main>
 
   <script src="script.js"></script>
 </body>
