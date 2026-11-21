@@ -1,10 +1,9 @@
-const CACHE_NAME = 'vern-pwa-v8';
+const CACHE_NAME = 'vern-pwa-v9';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './blog.html',
   './profile.html',
-  './spin.html',
   './wincross.html',
   './wearlevelinsight.html',
   './antigravity.html',
