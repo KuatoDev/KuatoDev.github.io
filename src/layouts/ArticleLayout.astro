@@ -1,0 +1,91 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  headline?: string;
+  description: string;
+  date: string;
+  pubDate?: string;
+  tag: string;
+  author: string;
+  image?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title,
+  headline = title,
+  description,
+  date,
+  pubDate,
+  tag,
+  author,
+  image = 'https://vernkuato.zone.id/assets/profile.webp',
+  canonicalURL = Astro.url.href
+} = Astro.props;
+
+const schemaDate = pubDate || date;
+---
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <BaseHead title={`${title} - Vern Kuato`} description={description} image={image} canonicalURL={canonicalURL} />
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": headline,
+    "description": description,
+    "image": image,
+    "datePublished": schemaDate,
+    "author": {
+      "@type": "Person",
+      "name": author,
+      "url": "https://vernkuato.zone.id/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Vern Kuato"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalURL
+    }
+  })} />
+</head>
+<body>
+  <div class="background-wrapper" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="toolbar-area">
+    <a href="/blog.html" class="back-btn">
+      <span class="material-icons" aria-hidden="true">arrow_back</span> Back to Blog
+    </a>
+  </div>
+
+  <div class="article-container">
+    <article class="single-article-card">
+      <div class="article-header">
+        <h1>{headline}</h1>
+        <div class="article-meta">
+          <span><i class="material-icons" style="font-size:14px; vertical-align:middle;" aria-hidden="true">person</i> {author}</span>
+          <span>|</span>
+          <span><i class="material-icons" style="font-size:14px; vertical-align:middle;" aria-hidden="true">calendar_today</i> {date}</span>
+        </div>
+      </div>
+
+      <div class="article-content">
+        <slot />
+      </div>
+    </article>
+  </div>
+
+  <script src="/script.js" is:inline></script>
+</body>
+</html>

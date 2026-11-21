@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('blog');
+  return articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article }
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+---
+<ArticleLayout
+  title={article.data.title}
+  headline={article.data.headline}
+  description={article.data.description}
+  date={article.data.date}
+  pubDate={article.data.pubDate}
+  tag={article.data.tag}
+  author={article.data.author}
+  image={article.data.image}
+  canonicalURL={`https://vernkuato.zone.id/blog/${article.slug}.html`}
+>
+  <Content />
+</ArticleLayout>

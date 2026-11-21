@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Vern Kuato's Blog",
+  "url": "https://vernkuato.zone.id/blog.html",
+  "description": "Writing about mobile OS, Android development, and Tech News.",
+  "publisher": {
+    "@type": "Person",
+    "name": "Vern Kuato",
+    "url": "https://vernkuato.zone.id/"
+  }
+};
+---
+<BaseLayout
+  title="Blog - Vern Kuato"
+  description="Writing about mobile OS, Android development, and Tech News."
+  canonicalURL="https://vernkuato.zone.id/blog.html"
+  showNav={false}
+  showFooter={false}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  </Fragment>
+
+  <div class="toolbar-area">
+    <a href="/index.html" class="back-btn">
+      <span class="material-icons" aria-hidden="true">arrow_back</span> Back to Home
+    </a>
+  </div>
+
+  <section class="hero" style="height: auto; min-height: 35vh; padding-top: clamp(80px, 12vh, 120px); padding-bottom: 20px;" aria-label="Blog header">
+    <h1>Vern's <span style="color: var(--primary-accent);">Blog</span></h1>
+    <p>Writing about mobile OS and Tech News</p>
+  </section>
+
+  <!-- Search & Tag Filter Controls -->
+  <section class="blog-controls-section" aria-label="Search and filter articles">
+    <div class="blog-controls-container">
+      <div class="blog-search-box">
+        <span class="material-icons search-icon" aria-hidden="true">search</span>
+        <input type="text" id="blogSearchInput" placeholder="Search articles or tags…" aria-label="Search articles or tags" />
+        <button id="blogSearchClear" class="clear-search-btn" aria-label="Clear search" style="display:none;">
+          <span class="material-icons" aria-hidden="true">close</span>
+        </button>
+      </div>
+      <div class="blog-tags-filter" id="blogTagsContainer" role="toolbar" aria-label="Filter by category tag">
+        <button class="tag-chip active" data-tag="all">All</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" style="padding-top: 10px;" aria-label="Articles">
+    <div class="blog-list" id="articlesContainer">
+      <p style="color: var(--text-muted); text-align:center; width:100%;">Loading articles...</p>
+    </div>
+  </section>
+</BaseLayout>
