@@ -1,2 +1,6 @@
 *.py
 .androidpe/
+node_modules/
+dist/
+.astro/
+.superpowers/
