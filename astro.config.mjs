@@ -6,6 +6,14 @@ export default defineConfig({
   build: {
     format: 'file'
   },
+  devToolbar: {
+    enabled: false
+  },
+  vite: {
+    optimizeDeps: {
+      exclude: ['aria-query', 'axobject-query']
+    }
+  },
   integrations: [tailwind({
     applyBaseStyles: false
   })]
